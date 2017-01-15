@@ -1,0 +1,13 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Tracking Number</th>
+      <th>Carrier</th>
+      <th>Created At</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= render partial: 'package_table_row', as: :package, collection: @packages %>
+  </tbody>
+</table>

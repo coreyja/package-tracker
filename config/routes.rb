@@ -2,6 +2,6 @@ Rails.application.routes.draw do
   root 'static#index'
 
   namespace :my do
-    resources :packages, only: %i(new create)
+    resources :packages, only: %i(new create index)
   end
 end
