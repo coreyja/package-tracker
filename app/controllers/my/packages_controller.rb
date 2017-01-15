@@ -6,7 +6,7 @@ module My
     end
 
     def create
-      @package = Package.new pendant_attrs
+      @package = Package.from_params pendant_params
       if @package.save
         redirect_to my_packages_path
       else
@@ -20,7 +20,7 @@ module My
 
     private
 
-    def pendant_attrs
+    def pendant_params
       params.require(:package).permit(:name, :tracking_number, :carrier).merge(user: current_user)
     end
   end

@@ -10,18 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170114050730) do
+ActiveRecord::Schema.define(version: 20170115224640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "packages", force: :cascade do |t|
-    t.string   "name",            null: false
-    t.string   "tracking_number", null: false
-    t.string   "carrier",         null: false
-    t.integer  "user_id",         null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "name",                 null: false
+    t.string   "tracking_number",      null: false
+    t.string   "carrier",              null: false
+    t.integer  "user_id",              null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "easypost_tracking_id", null: false
+    t.index ["easypost_tracking_id"], name: "index_packages_on_easypost_tracking_id", using: :btree
     t.index ["user_id"], name: "index_packages_on_user_id", using: :btree
   end
 
