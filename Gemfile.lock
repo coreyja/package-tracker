@@ -202,6 +202,7 @@ DEPENDENCIES
   pry-remote
   puma (~> 3.0)
   rails (~> 5.0.1)
+  rest-client
   sass-rails (~> 5.0)
   simple_form
   spring
