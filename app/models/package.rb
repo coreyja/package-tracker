@@ -40,8 +40,12 @@ class Package < ApplicationRecord
       params[:tracking_number]
     end
 
+    def carrier
+      params[:carrier]
+    end
+
     def easypost_tracker
-      @easypost_tracker ||= EasyPost::Tracker.create(tracking_code: tracking_number)
+      @easypost_tracker ||= EasyPost::Tracker.create(tracking_code: tracking_number, carrier: carrier)
     end
 
     attr_reader :params
