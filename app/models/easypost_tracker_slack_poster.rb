@@ -20,6 +20,11 @@ class EasypostTrackerSlackPoster
         {
           fields: [
             {
+              title: 'Package Name',
+              value: package.name,
+              short: true
+            },
+            {
               title: 'Tracking Number',
               value: tracker.tracking_code,
               short: true
@@ -49,4 +54,7 @@ class EasypostTrackerSlackPoster
     "```#{JSON.pretty_generate(tracker.to_h)}```"
   end
 
+  def package
+    Package.find_by!(easypost_tracking_id: tracker.id)
+  end
 end
