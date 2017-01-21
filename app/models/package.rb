@@ -1,8 +1,11 @@
 class Package < ApplicationRecord
   belongs_to :user
 
-  validates :name, :tracking_number, :carrier, :easypost_tracking_id, presence: true
-  validates! :user, presence: true
+  STATUS_OPTIONS = %i(unknown pre_transit in_transit out_for_delivery delivered available_for_pickup return_to_sender failure cancelled error).freeze
+  enum status: STATUS_OPTIONS.map {|x| [x,x.to_s] }.to_h
+
+  validates :name, :tracking_number, :carrier, :easypost_tracking_id, :status, presence: true
+  validates! :user_id, presence: true
 
   def self.from_params(params)
     new Params.new(params).attrs
@@ -15,7 +18,9 @@ class Package < ApplicationRecord
           {
             tracking_number: tracking_code,
             carrier: carrier,
-            easypost_tracking_id: id
+            easypost_tracking_id: id,
+            status: status,
+            estimated_delivery_date: est_delivery_date
           }
         end
       end
