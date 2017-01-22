@@ -7,8 +7,10 @@ class PackageTrackerUpdate
   end
 
   def perform!
-    package.update! tracker.to_package_attrs
-    process_tracking_updates!
+    package.transaction do
+      package.update! tracker.to_package_attrs
+      process_tracking_updates!
+    end
   end
 
   private

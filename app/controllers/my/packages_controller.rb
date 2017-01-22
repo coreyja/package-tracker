@@ -2,12 +2,12 @@
 module My
   class PackagesController < ApplicationController
     def new
-      @package = Package.new
+      @package_creator = PackageCreator.new
     end
 
     def create
-      @package = Package.from_params pendant_params
-      if @package.save
+      @package_creator = PackageCreator.new package_creator_params
+      if @package_creator.save
         redirect_to my_packages_path
       else
         render :new
@@ -20,8 +20,8 @@ module My
 
     private
 
-    def pendant_params
-      params.require(:package).permit(:name, :tracking_number, :carrier).merge(user: current_user)
+    def package_creator_params
+      params.require(:package_creator).permit(:name, :tracking_number, :carrier).merge(user: current_user)
     end
   end
 end

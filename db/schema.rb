@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20170121230346) do
     t.index ["user_id"], name: "index_packages_on_user_id", using: :btree
   end
 
-  create_table "tracking_update", force: :cascade do |t|
+  create_table "tracking_updates", force: :cascade do |t|
     t.integer  "package_id",          null: false
     t.text     "message",             null: false
     t.text     "status",              null: false
@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 20170121230346) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.index ["package_id", "tracking_updated_at", "status"], name: "index_tracking_update_on_uniqueness", unique: true, using: :btree
-    t.index ["package_id"], name: "index_tracking_update_on_package_id", using: :btree
-    t.index ["tracking_updated_at"], name: "index_tracking_update_on_tracking_updated_at", using: :btree
+    t.index ["package_id"], name: "index_tracking_updates_on_package_id", using: :btree
+    t.index ["tracking_updated_at"], name: "index_tracking_updates_on_tracking_updated_at", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -57,5 +57,5 @@ ActiveRecord::Schema.define(version: 20170121230346) do
   end
 
   add_foreign_key "packages", "users"
-  add_foreign_key "tracking_update", "packages"
+  add_foreign_key "tracking_updates", "packages"
 end
