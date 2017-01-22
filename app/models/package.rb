@@ -1,53 +1,32 @@
+# frozen_string_literal: true
 class Package < ApplicationRecord
   belongs_to :user
+  has_many :tracking_updates
 
-  validates :name, :tracking_number, :carrier, :easypost_tracking_id, presence: true
-  validates! :user, presence: true
+  STATUS_OPTIONS = %i(
+    unknown
+    pre_transit
+    in_transit
+    out_for_delivery
+    delivered
+    available_for_pickup
+    return_to_sender
+    failure
+    cancelled
+    error
+  ).freeze
+  enum status: STATUS_OPTIONS.map { |x| [x, x.to_s] }.to_h
 
-  def self.from_params(params)
-    new Params.new(params).attrs
+  validates :name, :tracking_number, :carrier, :easypost_tracking_id, :status, presence: true
+  validates! :user_id, presence: true
+
+  def refresh_tracking!
+    PackageTrackerUpdate.new(self, remote_tracker).perform!
   end
 
-  class Params
-    module EasyPostTrackerRefinements
-      refine EasyPost::Tracker do
-        def to_package_attrs
-          {
-            tracking_number: tracking_code,
-            carrier: carrier,
-            easypost_tracking_id: id
-          }
-        end
-      end
-    end
-    using EasyPostTrackerRefinements
+  private
 
-    def initialize(params = {})
-      @params = params.to_h
-    end
-
-    def attrs
-      params.merge(overrides).compact
-    end
-
-    private
-
-    def overrides
-      easypost_tracker.to_package_attrs
-    end
-
-    def tracking_number
-      params[:tracking_number]
-    end
-
-    def carrier
-      params[:carrier]
-    end
-
-    def easypost_tracker
-      @easypost_tracker ||= EasyPost::Tracker.create(tracking_code: tracking_number, carrier: carrier)
-    end
-
-    attr_reader :params
+  def remote_tracker
+    EasyPost::Tracker.retrieve(easypost_tracking_id)
   end
 end

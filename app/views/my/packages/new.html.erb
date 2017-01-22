@@ -1,4 +1,4 @@
-<%= simple_form_for [:my, @package] do |f| %>
+<%= simple_form_for @package_creator, url: my_packages_path do |f| %>
     <%= f.input :name %>
     <%= f.input :tracking_number %>
     <%= f.input :carrier %>
