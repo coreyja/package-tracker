@@ -1,5 +1,5 @@
 <tr>
-  <td><%= package.name %></td>
+  <td><%= link_to package.name, my_package_path(package) %></td>
   <td><%= package.tracking_number %></td>
   <td><%= package.carrier %></td>
   <td><%= package.created_at.to_s %></td>

@@ -1,0 +1,38 @@
+<div class="Package">
+  <h2 class="Package-name">
+    <%= @package.name %>
+  </h2>
+
+  <h2 class="Package-estimated">
+    <% if @package.estimated_delivery_date.present? %>
+      <%= @package.estimated_delivery_date %>
+    <% else %>
+      No Estimated Delivery Date Available
+    <% end %>
+  </h2>
+
+  <h3 class="Package-number">
+    <%= @package.tracking_number %>
+  </h3>
+
+  <h4 class="Package-carrier">
+    <%= @package.carrier %>
+  </h4>
+
+  <table class="Package-table TrackUpdateTable">
+    <thead>
+    <tr>
+      <th>Message</th>
+      <th>Status</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip</th>
+      <th>County</th>
+      <th>Updated At</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%= render partial: 'tracking_update_row', as: :tracking_update, collection: @package.tracking_updates.newest_first %>
+    </tbody>
+  </table>
+</div>

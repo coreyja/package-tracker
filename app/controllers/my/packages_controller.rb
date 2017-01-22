@@ -18,6 +18,10 @@ module My
       @packages = current_user.packages
     end
 
+    def show
+      @package = current_user.packages.find params[:id]
+    end
+
     private
 
     def package_creator_params

@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   end
 
   namespace :my do
-    resources :packages, only: %i(new create index)
+    resources :packages, only: %i(new create index show)
   end
 end
