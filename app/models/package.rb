@@ -20,39 +20,13 @@ class Package < ApplicationRecord
   validates :name, :tracking_number, :carrier, :easypost_tracking_id, :status, presence: true
   validates! :user_id, presence: true
 
-  def self.from_params(params)
-    new Params.new(params).attrs
+  def refresh_tracking!
+    PackageTrackerUpdate.new(self, remote_tracker).perform!
   end
 
-  class Params
-    using EasypostTrackerToPackage
+  private
 
-    def initialize(params = {})
-      @params = params.to_h
-    end
-
-    def attrs
-      params.merge(overrides).compact
-    end
-
-    private
-
-    def overrides
-      easypost_tracker.to_package_attrs
-    end
-
-    def tracking_number
-      params[:tracking_number]
-    end
-
-    def carrier
-      params[:carrier]
-    end
-
-    def easypost_tracker
-      @easypost_tracker ||= EasyPost::Tracker.create(tracking_code: tracking_number, carrier: carrier)
-    end
-
-    attr_reader :params
+  def remote_tracker
+    EasyPost::Tracker.retrieve(easypost_tracking_id)
   end
 end

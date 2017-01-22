@@ -35,4 +35,6 @@
     <%= render partial: 'tracking_update_row', as: :tracking_update, collection: @package.tracking_updates.newest_first %>
     </tbody>
   </table>
+
+  <%= link_to 'Refresh', my_package_tracking_refresh_path(@package), method: :post %>
 </div>

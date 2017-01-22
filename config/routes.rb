@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   end
 
   namespace :my do
-    resources :packages, only: %i(new create index show)
+    resources :packages, only: %i(new create index show) do
+      resource :tracking_refresh, only: %i(create)
+    end
   end
 end

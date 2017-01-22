@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class PackageTrackerUpdate
   using EasypostTrackerToPackage
 
@@ -48,7 +49,11 @@ class PackageTrackerUpdate
     end
 
     def tracking_update
-      @tracking_update = TrackingUpdate.find_or_initialize_by package: package, status: tracking_detail.status, tracking_updated_at: tracking_detail.datetime
+      @tracking_update = TrackingUpdate.find_or_initialize_by(
+        package: package,
+        status: tracking_detail.status,
+        tracking_updated_at: tracking_detail.datetime,
+      )
     end
   end
 end
