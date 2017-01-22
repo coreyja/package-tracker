@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class EasypostTrackerSlackPoster
   SLACK_URL = ENV['SLACK_POST_URL'].freeze
 
@@ -6,7 +7,7 @@ class EasypostTrackerSlackPoster
   end
 
   def post
-    RestClient.post(SLACK_URL, json.to_json, {content_type: :json, accept: :json})
+    RestClient.post(SLACK_URL, json.to_json, content_type: :json, accept: :json)
   end
 
   private
@@ -22,31 +23,31 @@ class EasypostTrackerSlackPoster
             {
               title: 'Package Name',
               value: package.name,
-              short: true
+              short: true,
             },
             {
               title: 'Tracking Number',
               value: tracker.tracking_code,
-              short: true
+              short: true,
             },
             {
               title: 'Status',
               value: tracker.status,
-              short: true
+              short: true,
             },
             {
               title: 'Estimated Delivery Date',
               value: tracker.est_delivery_date,
-              short: true
+              short: true,
             },
             {
               title: 'Public Url',
               value: tracker.public_url,
-              short: false
-            }
-          ]
-        }
-      ]
+              short: false,
+            },
+          ],
+        },
+      ],
     }
   end
 

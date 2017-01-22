@@ -1,6 +1,6 @@
+# frozen_string_literal: true
 module My
   class PackagesController < ApplicationController
-
     def new
       @package = Package.new
     end
@@ -25,4 +25,3 @@ module My
     end
   end
 end
-

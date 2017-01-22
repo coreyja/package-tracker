@@ -1,8 +1,20 @@
+# frozen_string_literal: true
 class Package < ApplicationRecord
   belongs_to :user
 
-  STATUS_OPTIONS = %i(unknown pre_transit in_transit out_for_delivery delivered available_for_pickup return_to_sender failure cancelled error).freeze
-  enum status: STATUS_OPTIONS.map {|x| [x,x.to_s] }.to_h
+  STATUS_OPTIONS = %i(
+    unknown
+    pre_transit
+    in_transit
+    out_for_delivery
+    delivered
+    available_for_pickup
+    return_to_sender
+    failure
+    cancelled
+    error
+  ).freeze
+  enum status: STATUS_OPTIONS.map { |x| [x, x.to_s] }.to_h
 
   validates :name, :tracking_number, :carrier, :easypost_tracking_id, :status, presence: true
   validates! :user_id, presence: true
@@ -20,7 +32,7 @@ class Package < ApplicationRecord
             carrier: carrier,
             easypost_tracking_id: id,
             status: status,
-            estimated_delivery_date: est_delivery_date
+            estimated_delivery_date: est_delivery_date,
           }
         end
       end

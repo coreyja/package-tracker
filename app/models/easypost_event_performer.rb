@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class EasypostEventPerformer
   module EasypostResourceRefinements
     refine EasyPost::Resource do
