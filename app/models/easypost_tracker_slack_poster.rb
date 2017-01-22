@@ -2,7 +2,8 @@
 class EasypostTrackerSlackPoster
   SLACK_URL = ENV['SLACK_POST_URL'].freeze
 
-  def initialize(tracker)
+  def initialize(package, tracker)
+    @package = package
     @tracker = tracker
   end
 
@@ -12,7 +13,7 @@ class EasypostTrackerSlackPoster
 
   private
 
-  attr_reader :tracker
+  attr_reader :package, :tracker
 
   def json
     {
@@ -53,9 +54,5 @@ class EasypostTrackerSlackPoster
 
   def text
     "```#{JSON.pretty_generate(tracker.to_h)}```"
-  end
-
-  def package
-    Package.find_by!(easypost_tracking_id: tracker.id)
   end
 end

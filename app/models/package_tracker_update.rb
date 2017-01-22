@@ -1,7 +1,8 @@
-class EasypostTrackerUpdate
+class PackageTrackerUpdate
   using EasypostTrackerToPackage
 
-  def initialize(tracker)
+  def initialize(package, tracker)
+    @package = package
     @tracker = tracker
   end
 
@@ -12,16 +13,12 @@ class EasypostTrackerUpdate
 
   private
 
-  attr_reader :tracker
+  attr_reader :tracker, :package
 
   def process_tracking_updates!
     tracker.tracking_details.each do |tracking_detail|
       TrackingUpdatePerformer.new(package, tracking_detail).save!
     end
-  end
-
-  def package
-    @package ||= Package.find_by!(easypost_tracking_id: tracker.id)
   end
 
   class TrackingUpdatePerformer

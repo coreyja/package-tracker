@@ -9,8 +9,12 @@ class EasypostEventPerformer
 
     refine EasyPost::Tracker do
       def handle_event!
-        EasypostTrackerSlackPoster.new(self).post
-        EasypostTrackerUpdate.new(self).post
+        EasypostTrackerSlackPoster.new(package, self).post
+        PackageTrackerUpdate.new(package, self).perform!
+      end
+
+      def package
+        Package.find_by!(easypost_tracking_id: id)
       end
     end
   end
