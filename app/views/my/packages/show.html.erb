@@ -3,6 +3,10 @@
     <%= @package.name %>
   </h2>
 
+  <h2 class="Package-status">
+    <%= @package.status.humanize %>
+  </h2>
+
   <h2 class="Package-estimated">
     <% if @package.estimated_delivery_date.present? %>
       <%= @package.estimated_delivery_date %>
