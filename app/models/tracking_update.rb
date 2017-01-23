@@ -18,9 +18,22 @@ class TrackingUpdate < ApplicationRecord
 
   validates_uniqueness_of :package_id, scope: [:status, :tracking_updated_at]
 
+  geocoded_by :full_street_address
+
   scope :newest_first, -> { order tracking_updated_at: :desc }
+
+  attr_accessor :latitude, :longitude
 
   def display_status
     status.humanize
+  end
+
+  def full_street_address
+    "#{city}, #{state} #{zip} #{country}"
+  end
+
+  def map_data
+    lat, lng = geocode
+    {lat: lat, lng: lng} if lng && lat
   end
 end

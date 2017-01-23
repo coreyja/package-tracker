@@ -28,6 +28,10 @@ class Package < ApplicationRecord
     status.humanize
   end
 
+  def map_data
+    tracking_updates.map(&:map_data).compact
+  end
+
   private
 
   def remote_tracker

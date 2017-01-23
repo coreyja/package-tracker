@@ -38,6 +38,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'clearance'
 gem 'easypost'
+gem 'geocoder'
 gem 'rest-client'
 gem 'simple_form'
 

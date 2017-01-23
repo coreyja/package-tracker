@@ -41,4 +41,30 @@
   </table>
 
   <%= link_to 'Refresh', my_package_tracking_refresh_path(@package), method: :post %>
+
+  <div class="Pacakge-map" id="Pacakge-map">
+  </div>
+  <script>
+      function initMap() {
+          var map = new google.maps.Map(document.getElementById('Pacakge-map'), {
+              zoom: 4,
+              center: <%= @package.map_data.first.to_json.html_safe %>,
+              mapTypeId: 'terrain'
+          });
+
+          var trackingCoordinates = <%= @package.map_data.to_json.html_safe %>;
+          var packagePath = new google.maps.Polyline({
+              path: trackingCoordinates,
+              geodesic: true,
+              strokeColor: '#FF0000',
+              strokeOpacity: 1.0,
+              strokeWeight: 2
+          });
+
+          packagePath.setMap(map);
+      }
+  </script>
+  <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap">
+  </script>
 </div>
