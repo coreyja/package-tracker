@@ -24,6 +24,10 @@ class Package < ApplicationRecord
     PackageTrackerUpdate.new(self, remote_tracker).perform!
   end
 
+  def display_status
+    status.humanize
+  end
+
   private
 
   def remote_tracker
