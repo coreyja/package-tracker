@@ -15,7 +15,7 @@ module My
     end
 
     def index
-      @packages = current_user.packages
+      @packages = current_user.packages.sort_by(&:order)
     end
 
     def show

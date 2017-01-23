@@ -32,6 +32,10 @@ class Package < ApplicationRecord
     tracking_updates.map(&:map_data).compact
   end
 
+  def order
+    tracking_updates.where.not(tracking_updated_at: nil).newest_first.pluck(:tracking_updated_at).first.to_i
+  end
+
   private
 
   def remote_tracker
