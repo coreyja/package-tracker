@@ -33,7 +33,11 @@ class Package < ApplicationRecord
   end
 
   def order
-    tracking_updates.where.not(tracking_updated_at: nil).newest_first.pluck(:tracking_updated_at).first.to_i
+    most_recent_update.to_i
+  end
+
+  def most_recent_update
+    tracking_updates.where.not(tracking_updated_at: nil).newest_first.pluck(:tracking_updated_at).first
   end
 
   private
