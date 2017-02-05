@@ -34,6 +34,6 @@ class TrackingUpdate < ApplicationRecord
 
   def map_data
     lat, lng = geocode
-    {lat: lat, lng: lng} if lng && lat
+    { lat: lat, lng: lng } if lng && lat
   end
 end
