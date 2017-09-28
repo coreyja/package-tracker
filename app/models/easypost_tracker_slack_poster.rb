@@ -17,7 +17,7 @@ class EasypostTrackerSlackPoster
 
   def json
     {
-      text: text,
+      text: '',
       attachments: [
         {
           fields: [
@@ -50,9 +50,5 @@ class EasypostTrackerSlackPoster
         },
       ],
     }
-  end
-
-  def text
-    "```#{JSON.pretty_generate(tracker.to_h)}```"
   end
 end
