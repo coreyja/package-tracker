@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class EasypostTrackerSlackPoster
   SLACK_URL = ENV['SLACK_POST_URL'].freeze
 

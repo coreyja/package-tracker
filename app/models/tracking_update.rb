@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class TrackingUpdate < ApplicationRecord
   belongs_to :package
 
@@ -16,7 +17,7 @@ class TrackingUpdate < ApplicationRecord
   ).freeze
   enum status: STATUS_OPTIONS.map { |x| [x, x.to_s] }.to_h
 
-  validates_uniqueness_of :package_id, scope: [:status, :tracking_updated_at]
+  validates_uniqueness_of :package_id, scope: %i[status tracking_updated_at]
 
   geocoded_by :full_street_address
 

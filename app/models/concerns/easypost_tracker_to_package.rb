@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module EasypostTrackerToPackage
   refine EasyPost::Tracker do
     def to_package_attrs
