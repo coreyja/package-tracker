@@ -6,12 +6,7 @@ jobs:
       - image: circleci/ruby:2.4.1-node
         environment:
           RAILS_ENV: test
-          PGHOST: 127.0.0.1
-          PGUSER: myapp-test
       - image: circleci/postgres:9.4.12-alpine
-          POSTGRES_USER: myapp
-          POSTGRES_DB: myapp-test
-          POSTGRES_PASSWORD: ""
     steps:
       - checkout
 
