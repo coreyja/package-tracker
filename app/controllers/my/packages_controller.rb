@@ -2,6 +2,8 @@
 
 module My
   class PackagesController < ApplicationController
+    before_action :require_login
+
     def new
       @package_creator = PackageCreator.new
     end

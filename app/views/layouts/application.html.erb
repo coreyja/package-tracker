@@ -21,6 +21,9 @@
   </head>
 
   <body>
+    <div class="Logo">
+      <%= image_tag 'launcher-icon-4x.png' %>
+    </div>
     <% if signed_in? %>
       Signed in as: <%= current_user.email %>
     <%= button_to 'Sign out', sign_out_path, method: :delete %>
