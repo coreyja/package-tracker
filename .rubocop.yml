@@ -1,11 +1,29 @@
 inherit_from: .thoughtbot_rubocop.yml
 
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'db/migrate/**/*'
+    - 'db/schema.rb'
+    - 'rails/*/'
+    - 'config/**/*'
+    - 'node_modules/**/*'
+
 Metrics/LineLength:
   Max: 120
+  Exclude:
+    - 'spec/**/*'
 
 Metrics/ClassLength:
   Exclude:
     - 'spec/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+Documentation:
+  Enabled: false
 
 Style/StringLiterals:
   Description: Checks if uses of quotes match the configured preference.

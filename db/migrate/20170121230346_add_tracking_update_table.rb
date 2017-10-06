@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class AddTrackingUpdateTable < ActiveRecord::Migration[5.0]
   def change
     create_table :tracking_updates do |t|
@@ -16,7 +17,7 @@ class AddTrackingUpdateTable < ActiveRecord::Migration[5.0]
     end
     add_index(
       :tracking_updates,
-      [:package_id, :tracking_updated_at, :status],
+      %i[package_id tracking_updated_at status],
       unique: true,
       name: 'index_tracking_update_on_uniqueness',
     )

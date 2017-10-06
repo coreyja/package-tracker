@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class Package < ApplicationRecord
   belongs_to :user
   has_many :tracking_updates

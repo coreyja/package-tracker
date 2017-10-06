@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module My
   class TrackingRefreshesController < ApplicationController
     def create
