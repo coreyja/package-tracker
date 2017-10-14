@@ -10,7 +10,6 @@ class EasypostEventPerformer
 
     refine EasyPost::Tracker do
       def handle_event!
-        EasypostTrackerSlackPoster.new(package, self).post
         PackageTrackerUpdate.new(package, self).perform!
       end
 
