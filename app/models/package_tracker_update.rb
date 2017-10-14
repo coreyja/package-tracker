@@ -12,6 +12,7 @@ class PackageTrackerUpdate
     package.transaction do
       package.update! tracker.to_package_attrs
       process_tracking_updates!
+      send_slack_update! if new_tracking_updates?
     end
   end
 
@@ -23,6 +24,14 @@ class PackageTrackerUpdate
     tracker.tracking_details.each do |tracking_detail|
       TrackingUpdatePerformer.new(package, tracking_detail).save!
     end
+  end
+
+  def send_slack_update!
+    EasypostTrackerSlackPoster.new(package, tracker).post
+  end
+
+  def new_tracking_updates?
+    package.tracking_update.count == tracker.tracking_details.count
   end
 
   class TrackingUpdatePerformer
