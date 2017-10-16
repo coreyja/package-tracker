@@ -31,7 +31,7 @@ class PackageTrackerUpdate
   end
 
   def new_tracking_updates?
-    package.tracking_updates.count == tracker.tracking_details.count
+    package.tracking_updates.count != tracker.tracking_details.count
   end
 
   class TrackingUpdatePerformer
