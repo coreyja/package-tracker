@@ -54,7 +54,7 @@ class PackageTrackerUpdate
         city: tracking_detail.tracking_location.city,
         state: tracking_detail.tracking_location.state,
         country: tracking_detail.tracking_location.country,
-        zip: tracking_detail.tracking_location.zip,
+        zip: tracking_detail.tracking_location.zip
       }
     end
 
@@ -62,7 +62,7 @@ class PackageTrackerUpdate
       @tracking_update = TrackingUpdate.find_or_initialize_by(
         package: package,
         status: tracking_detail.status,
-        tracking_updated_at: tracking_detail.datetime,
+        tracking_updated_at: tracking_detail.datetime
       )
     end
   end

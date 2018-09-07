@@ -51,7 +51,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'pry-rails'
   gem 'pry-remote'
-  gem 'rubocop'
+  gem 'rubocop-coreyja'
 end
 
 group :development do
