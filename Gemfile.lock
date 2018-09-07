@@ -261,7 +261,7 @@ DEPENDENCIES
   puma (~> 3.12)
   rails (~> 5.1.6)
   rest-client
-  rubocop-coreyja
+  rubocop-coreyja (= 0.2.0)
   sass-rails (~> 5.0)
   simple_form
   spring
