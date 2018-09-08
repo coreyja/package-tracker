@@ -43,12 +43,17 @@ gem 'geocoder'
 gem 'rest-client'
 gem 'simple_form'
 
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+
+gem 'google-cloud-pubsub'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'pry-rails'
   gem 'pry-remote'
-  gem 'rubocop'
+  gem 'rubocop-coreyja', '0.2.0'
 end
 
 group :development do

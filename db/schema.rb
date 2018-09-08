@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170123003146) do
+ActiveRecord::Schema.define(version: 20180803035621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "authentications", force: :cascade do |t|
+    t.string   "provider",   null: false
+    t.string   "uid",        null: false
+    t.string   "token",      null: false
+    t.string   "username"
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid", unique: true, using: :btree
+    t.index ["user_id"], name: "index_authentications_on_user_id", using: :btree
+  end
 
   create_table "packages", force: :cascade do |t|
     t.string   "name",                    null: false
@@ -49,13 +61,15 @@ ActiveRecord::Schema.define(version: 20170123003146) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.string   "email",                          null: false
-    t.string   "encrypted_password", limit: 128, null: false
+    t.string   "encrypted_password", limit: 128
     t.string   "confirmation_token", limit: 128
     t.string   "remember_token",     limit: 128, null: false
+    t.string   "name"
     t.index ["email"], name: "index_users_on_email", using: :btree
     t.index ["remember_token"], name: "index_users_on_remember_token", using: :btree
   end
 
+  add_foreign_key "authentications", "users"
   add_foreign_key "packages", "users"
   add_foreign_key "tracking_updates", "packages"
 end

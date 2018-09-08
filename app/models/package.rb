@@ -4,7 +4,7 @@ class Package < ApplicationRecord
   belongs_to :user
   has_many :tracking_updates
 
-  STATUS_OPTIONS = %i(
+  STATUS_OPTIONS = %i[
     unknown
     pre_transit
     in_transit
@@ -15,7 +15,7 @@ class Package < ApplicationRecord
     failure
     cancelled
     error
-  ).freeze
+  ].freeze
   enum status: STATUS_OPTIONS.map { |x| [x, x.to_s] }.to_h
 
   validates :name, :tracking_number, :carrier, :easypost_tracking_id, :status, presence: true

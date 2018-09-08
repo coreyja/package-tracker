@@ -8,7 +8,7 @@ module EasypostTrackerToPackage
         carrier: carrier,
         easypost_tracking_id: id,
         status: status,
-        estimated_delivery_date: est_delivery_date,
+        estimated_delivery_date: est_delivery_date
       }
     end
   end

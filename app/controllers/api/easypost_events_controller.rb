@@ -12,7 +12,7 @@ module Api
     private
 
     def easypost_event
-      EasyPost::Util::convert_to_easypost_object(params.to_h, nil)
+      EasyPost::Util.convert_to_easypost_object(params.to_h, nil)
     end
 
     def params

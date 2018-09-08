@@ -3,7 +3,7 @@
 class TrackingUpdate < ApplicationRecord
   belongs_to :package
 
-  STATUS_OPTIONS = %i(
+  STATUS_OPTIONS = %i[
     unknown
     pre_transit
     in_transit
@@ -14,7 +14,7 @@ class TrackingUpdate < ApplicationRecord
     failure
     cancelled
     error
-  ).freeze
+  ].freeze
   enum status: STATUS_OPTIONS.map { |x| [x, x.to_s] }.to_h
 
   validates_uniqueness_of :package_id, scope: %i[status tracking_updated_at]
