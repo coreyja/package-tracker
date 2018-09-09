@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def raven_params
-    if params.responds_to(:to_unsafe_h)
+    if params.respond_to?(:to_unsafe_h)
       params.to_unsafe_h
     else
       params.to_h
