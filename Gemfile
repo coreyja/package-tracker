@@ -46,6 +46,7 @@ gem 'simple_form'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 
+gem 'google-api-client'
 gem 'google-cloud-pubsub'
 
 group :development, :test do
