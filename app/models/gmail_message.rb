@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GmailMessage
   def initialize(gmail_service:, message_id:)
     @gmail_service = gmail_service
