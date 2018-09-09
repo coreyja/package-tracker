@@ -6,6 +6,10 @@ class GmailMessage
     @message_id = message_id
   end
 
+  def subject
+    message.payload.headers.find { |header| header.name == 'Subject' }&.value
+  end
+
   def body
     if !message.payload.body.size.zero?
       message.payload.body.data

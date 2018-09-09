@@ -9,7 +9,7 @@ class ReadNewMessage
   def perform
     p "Reading email for #{gmail_watch.email_address} #{message_id}"
     if message.present?
-      Rails.logger.info "Email Found! Body Length: #{message.body.length}"
+      Rails.logger.info "Email Found! Subject: #{message.subject} Body Length: #{message.body.length}"
     else
       Rails.logger.error "No message matching id found. #{gmail_watch.email_address} Message ID: #{message_id}"
     end
