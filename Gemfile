@@ -40,15 +40,13 @@ gem 'jbuilder', '~> 2.5'
 gem 'clearance'
 gem 'easypost'
 gem 'geocoder'
-gem 'rest-client'
-gem 'simple_form'
-
-gem 'omniauth'
-gem 'omniauth-google-oauth2'
-
 gem 'google-api-client'
 gem 'google-cloud-pubsub'
-
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'rest-client'
+gem 'sentry-raven'
+gem 'simple_form'
 gem 'tracking_number'
 
 group :development, :test do
