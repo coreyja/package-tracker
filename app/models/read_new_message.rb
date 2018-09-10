@@ -13,7 +13,8 @@ class ReadNewMessage
       PackageCreator.new(
         name: message.subject,
         tracking_number: tracking_number.tracking_number,
-        carrier: tracking_number.carrier_code
+        carrier: tracking_number.carrier_code,
+        user: user
       ).save!
     end
   end
@@ -21,6 +22,10 @@ class ReadNewMessage
   private
 
   attr_reader :gmail_watch, :message_id
+
+  def user
+    gmail_watch.authentication.user
+  end
 
   def tracking_numbers
     @tracking_numbers ||= TrackingNumber.search message.joined_body
