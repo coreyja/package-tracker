@@ -10,14 +10,12 @@ class GmailMessage
     message.payload.headers.find { |header| header.name == 'Subject' }&.value
   end
 
-  def body
-    if !message.payload.body.size.zero?
-      message.payload.body.data
-    elsif plain_part.present?
-      plain_part.body.data
-    else
-      message.payload.parts.first.body.data
-    end
+  def bodies
+    ([message.payload.body.data] + message_parts.map(&:body).map(&:data)).compact
+  end
+
+  def joined_body
+    bodies.join(' ')
   end
 
   def present?
@@ -30,6 +28,10 @@ class GmailMessage
 
   def selected_part_body
     text_part_body || html_part_body
+  end
+
+  def message_parts
+    message.payload.parts || []
   end
 
   def plain_part

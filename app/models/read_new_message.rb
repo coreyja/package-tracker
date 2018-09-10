@@ -7,17 +7,24 @@ class ReadNewMessage
   end
 
   def perform
-    p "Reading email for #{gmail_watch.email_address} #{message_id}"
-    if message.present?
-      Rails.logger.info "Email Found! Subject: #{message.subject} Body Length: #{message.body.length}"
-    else
-      Rails.logger.error "No message matching id found. #{gmail_watch.email_address} Message ID: #{message_id}"
+    return unless message.present?
+
+    tracking_numbers.each do |tracking_number|
+      PackageCreator.new(
+        name: message.subject,
+        tracking_number: tracking_number.tracking_number,
+        carrier: tracking_number.carrier_code
+      ).save!
     end
   end
 
   private
 
   attr_reader :gmail_watch, :message_id
+
+  def tracking_numbers
+    @tracking_numbers ||= TrackingNumber.search message.joined_body
+  end
 
   def message
     @message ||= GmailMessage.new(gmail_service: service, message_id: message_id)
