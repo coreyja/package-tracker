@@ -13,7 +13,7 @@ class ReadNewMessage
       PackageCreator.new(
         name: message.subject,
         tracking_number: tracking_number.tracking_number,
-        carrier: tracking_number.carrier
+        carrier: tracking_number.carrier_code
       ).save!
     end
   end
