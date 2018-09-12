@@ -85,7 +85,7 @@ GEM
       representable (~> 3.0)
       retriable (>= 2.0, < 4.0)
       signet (~> 0.9)
-    google-cloud-core (1.2.5)
+    google-cloud-core (1.2.6)
       google-cloud-env (~> 1.0)
     google-cloud-env (1.0.4)
       faraday (~> 0.11)
