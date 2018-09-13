@@ -20,6 +20,12 @@ class ReadNewMessage
       Rails.logger.info tracking_number.tracking_number
       Rails.logger.info tracking_number.carrier_code
       Rails.logger.info tracking_number.carrier_name
+      PackageCreator.new(
+        name: message.subject,
+        tracking_number: tracking_number.tracking_number,
+        carrier: CARRIER_CODES.fetch(tracking_number.carrier_code),
+        user: user
+      ).save!
     end
   end
 
