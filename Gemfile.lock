@@ -285,7 +285,7 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
-    tracking_number (1.0.3)
+    tracking_number (1.0.4)
       activesupport (>= 4.2.5)
     turbolinks (5.2.0)
       turbolinks-source (~> 5.2)
