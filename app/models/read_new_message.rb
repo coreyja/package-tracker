@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 class ReadNewMessage
+  CARRIER_CODES = {
+    usps: 'USPS',
+    ups: 'UPS',
+    fedex: 'FedEx',
+    dhl: 'DHLExpress'
+	}
+
   def initialize(gmail_watch:, message_id:)
     @gmail_watch = gmail_watch
     @message_id = message_id
@@ -13,12 +20,14 @@ class ReadNewMessage
       Rails.logger.info tracking_number.tracking_number
       Rails.logger.info tracking_number.carrier_code
       Rails.logger.info tracking_number.carrier_name
-      PackageCreator.new(
-        name: message.subject,
-        tracking_number: tracking_number.tracking_number,
-        carrier: tracking_number.carrier_name,
-        user: user
-      ).save!
+      if CARRIER_CODES.key? tracking_number.carrier_code
+        PackageCreator.new(
+          name: message.subject,
+          tracking_number: tracking_number.tracking_number,
+          carrier: CARRIER_CODES.fetch(tracking_number.carrier_code),
+          user: user
+        ).save!
+      end
     end
   end
 
