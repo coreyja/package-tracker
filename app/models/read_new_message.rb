@@ -10,10 +10,13 @@ class ReadNewMessage
     return unless message.present?
 
     tracking_numbers.each do |tracking_number|
+      Rails.logger.info tracking_number.tracking_number
+      Rails.logger.info tracking_number.carrier_code
+      Rails.logger.info tracking_number.carrier_name
       PackageCreator.new(
         name: message.subject,
         tracking_number: tracking_number.tracking_number,
-        carrier: tracking_number.carrier_code,
+        carrier: tracking_number.carrier_name,
         user: user
       ).save!
     end
