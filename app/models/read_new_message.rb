@@ -6,7 +6,7 @@ class ReadNewMessage
     ups: 'UPS',
     fedex: 'FedEx',
     dhl: 'DHLExpress'
-	}
+  }.freeze
 
   def initialize(gmail_watch:, message_id:)
     @gmail_watch = gmail_watch
@@ -16,18 +16,16 @@ class ReadNewMessage
   def perform
     return unless message.present?
 
-    tracking_numbers.each do |tracking_number|
+    valid_tracking_numbers.each do |tracking_number|
       Rails.logger.info tracking_number.tracking_number
       Rails.logger.info tracking_number.carrier_code
       Rails.logger.info tracking_number.carrier_name
-      if CARRIER_CODES.key? tracking_number.carrier_code
-        PackageCreator.new(
-          name: message.subject,
-          tracking_number: tracking_number.tracking_number,
-          carrier: CARRIER_CODES.fetch(tracking_number.carrier_code),
-          user: user
-        ).save!
-      end
+      PackageCreator.new(
+        name: message.subject,
+        tracking_number: tracking_number.tracking_number,
+        carrier: CARRIER_CODES.fetch(tracking_number.carrier_code),
+        user: user
+      ).save!
     end
   end
 
@@ -37,6 +35,12 @@ class ReadNewMessage
 
   def user
     gmail_watch.authentication.user
+  end
+
+  def valid_tracking_numbers
+    tracking_numbers.select do |tracking_number|
+      CARRIER_CODES.key? tracking_number.carrier_code
+    end
   end
 
   def tracking_numbers
