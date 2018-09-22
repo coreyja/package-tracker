@@ -6,7 +6,7 @@ module Api
 
     def create
       Rails.logger.info decoded_message
-      ReadNewHistory.new(email_address: decoded_message['emailAddress']).perform
+      # ReadNewHistory.new(email_address: decoded_message['emailAddress']).perform
       head :no_content
     end
 
