@@ -2,7 +2,7 @@
 
 class Package < ApplicationRecord
   belongs_to :user
-  has_many :tracking_updates
+  has_many :tracking_updates, dependent: :destroy
 
   STATUS_OPTIONS = %i[
     unknown
