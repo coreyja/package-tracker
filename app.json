@@ -1,0 +1,11 @@
+{
+	"name": "package-tracker",
+	"description": "Package Tracker",
+	"keywords": [
+	],
+	"scripts": {
+		"dokku": {
+			"postdeploy": "bundle exec rake db:migrate"
+		}
+	}
+}
