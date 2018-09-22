@@ -16,7 +16,7 @@ class ReadNewHistory
 
   def read_messages
     message_ids.each do |id|
-      ReadNewMessage.new(gmail_watch: gmail_watch, message_id: id).perform
+      Delayed::Job.enqueue ReadNewMessage.new(gmail_watch: gmail_watch, message_id: id)
     end
   end
 

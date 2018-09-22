@@ -24,7 +24,7 @@ class EasypostEventPerformer
     @event = event
   end
 
-  def perform!
+  def perform
     result.handle_event!
   end
 

@@ -6,7 +6,7 @@ module Api
 
     def create
       Rails.logger.info decoded_message
-      ReadNewHistory.new(email_address: decoded_message['emailAddress']).perform
+      Delayed::Job.enqueue ReadNewHistory.new(email_address: decoded_message['emailAddress'])
       head :no_content
     end
 

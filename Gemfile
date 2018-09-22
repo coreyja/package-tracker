@@ -38,6 +38,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'clearance'
+gem 'delayed_job_active_record'
 gem 'easypost'
 gem 'geocoder'
 gem 'google-api-client'
@@ -45,8 +46,8 @@ gem 'google-cloud-pubsub'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'rest-client'
-gem 'sentry-raven'
 gem 'simple_form'
+gem 'skylight'
 gem 'tracking_number'
 
 group :development, :test do
