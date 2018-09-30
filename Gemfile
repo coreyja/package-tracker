@@ -38,6 +38,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'clearance'
+gem 'clockwork'
 gem 'delayed_job_active_record'
 gem 'easypost'
 gem 'geocoder'
