@@ -1,5 +1,7 @@
 FROM pawurb/ruby-jemalloc-node-yarn:latest
 
+RUN apt-get update && apt-get install -y tzdata
+
 COPY Gemfile* /tmp/
 WORKDIR /tmp
 RUN bundle install --jobs 5 --retry 5 --without development test
