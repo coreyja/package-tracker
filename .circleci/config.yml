@@ -1,9 +1,9 @@
 version: 2
 jobs:
-  build:
+  test:
     working_directory: ~/package-tracker
     docker:
-      - image: circleci/ruby:2.5.1-node
+      - image: pawurb/ruby-jemalloc-node-yarn:latest
         environment:
           RAILS_ENV: test
       - image: circleci/postgres:9.4.12-alpine
@@ -12,14 +12,18 @@ jobs:
 
       # Restore bundle cache
       - type: cache-restore
-        key: package-tracker-{{ checksum "Gemfile.lock" }}
+        key: package-tracker-v1-{{ checksum "Gemfile.lock" }}
 
       # Bundle install dependencies
-      - run: bundle install --path vendor/bundle
+      - run: bundle config --local path "vendor/bundle"
+      - run: |
+          bundle check ||
+            bundle install --frozen --jobs 5 --retry 5
+      - run: bundle clean
 
       # Store bundle cache
       - type: cache-save
-        key: package-tracker-{{ checksum "Gemfile.lock" }}
+        key: package-tracker-v1-{{ checksum "Gemfile.lock" }}
         paths:
           - vendor/bundle
 
@@ -29,4 +33,28 @@ jobs:
       # Save artifacts
       - type: store_test_results
         path: /tmp/test-results
+  deploy:
+    docker:
+      - image: pawurb/ruby-jemalloc-node-yarn:latest
+    steps:
+      - add_ssh_keys:
+        fingerprints:
+          - "27:70:c5:09:00:c4:03:97:13:2e:f5:47:e4:a2:3f:97"
+      - checkout
+      - run:
+        name: Deploy with git push
+        command: |
+          git push $GIT_DEPLOY_USERNAME@$GIT_DEPLOY_HOST:package-tracker master
+
+workflows:
+  version: 2
+  test-and-deploy:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
 
