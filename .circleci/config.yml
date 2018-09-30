@@ -42,9 +42,9 @@ jobs:
             - "27:70:c5:09:00:c4:03:97:13:2e:f5:47:e4:a2:3f:97"
       - checkout
       - run:
-        name: Deploy with git push
-        command: |
-          git push $GIT_DEPLOY_USERNAME@$GIT_DEPLOY_HOST:package-tracker master
+          name: Deploy with git push
+          command: |
+            git push $GIT_DEPLOY_USERNAME@$GIT_DEPLOY_HOST:package-tracker master
 
 workflows:
   version: 2
