@@ -19,6 +19,8 @@ jobs:
           bundle check --path vendor/bundle ||
             bundle install --frozen --jobs 5 --retry 5 --path vendor/bundle
 
+      - run: bundle clean --path vendor/bundle --force
+
       # Store bundle cache
       - type: cache-save
         key: package-tracker-{{ checksum "Gemfile.lock" }}
