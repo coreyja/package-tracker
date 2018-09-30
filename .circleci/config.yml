@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  test:
     working_directory: ~/package-tracker
     docker:
       - image: pawurb/ruby-jemalloc-node-yarn:latest
@@ -29,4 +29,26 @@ jobs:
       # Save artifacts
       - type: store_test_results
         path: /tmp/test-results
+  deploy:
+    steps:
+      - add_ssh_keys:
+        fingerprints:
+          - "27:70:c5:09:00:c4:03:97:13:2e:f5:47:e4:a2:3f:97"
+      - checkout
+      - run:
+        name: Deploy with git push
+        command: |
+          git push $GIT_DEPLOY_USERNAME@$GIT_DEPLOY_HOST:package-tracker master
+
+workflows:
+  version: 2
+  test-and-deploy:
+    jobs:
+      - test
+      - deploy:
+        requires:
+          - build
+        filters:
+          branches:
+            only: master
 
