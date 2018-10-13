@@ -39,6 +39,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'clearance'
 gem 'clockwork'
+gem 'ddtrace'
 gem 'delayed_job_active_record'
 gem 'easypost'
 gem 'geocoder'
