@@ -137,7 +137,7 @@ GEM
     i18n (1.1.1)
       concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.1)
-    jbuilder (2.7.0)
+    jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
     jquery-rails (4.3.3)
@@ -336,7 +336,7 @@ DEPENDENCIES
   geocoder
   google-api-client
   google-cloud-pubsub
-  jbuilder (~> 2.5)
+  jbuilder (~> 2.8)
   jquery-rails
   listen (~> 3.1.5)
   omniauth
