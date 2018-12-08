@@ -81,7 +81,7 @@ GEM
       activemodel
     erubi (1.7.1)
     execjs (2.7.0)
-    faraday (0.15.3)
+    faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
     geocoder (1.5.0)
@@ -179,7 +179,7 @@ GEM
     omniauth (1.8.1)
       hashie (>= 3.4.6, < 3.6.0)
       rack (>= 1.6.2, < 3)
-    omniauth-google-oauth2 (0.5.3)
+    omniauth-google-oauth2 (0.5.4)
       jwt (>= 1.5)
       omniauth (>= 1.1.1)
       omniauth-oauth2 (>= 1.5)
