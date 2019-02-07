@@ -13,6 +13,6 @@ class User < ApplicationRecord
   end
 
   def password_optional?
-    true
+    authentications.any?
   end
 end
