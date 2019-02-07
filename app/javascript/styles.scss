@@ -1,3 +1,17 @@
+
+// Colors
+$light-green: #ccf0c3;
+$light-purple: #bca3ca;
+$medium-purple: #7c4789;
+$dark-purple: #4a0e5c;
+
+$primary: $light-green;
+$primary-invert: hsl(0, 0%, 21%);
+$info: $dark-purple;
+$link: $medium-purple;
+
+
+// Dimensions - For Image placeholders
 $dimensions: 16 24 28 32 48 64 96 128;
 
 @import '~bulma/bulma';
