@@ -5,6 +5,8 @@
     <%= csrf_meta_tags %>
     <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
     <meta name="theme-color" content="#f7b551">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <%= favicon_link_tag %>
     <!-- Android -->
@@ -20,25 +22,18 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <%= stylesheet_pack_tag 'application' %>
+    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
-    <div class="Logo">
-      <%= image_tag 'launcher-icon-4x.png' %>
+    <%= render 'shared/navbar' %>
+
+    <div id="flash">
+      <% flash.each do |key, value| %>
+        <div class="flash <%= key %>"><%= value %></div>
+      <% end %>
     </div>
-    <% if signed_in? %>
-      Signed in as: <%= current_user.email %>
-    <%= button_to 'Sign out', sign_out_path, method: :delete %>
-  <% else %>
-    <%= link_to 'Sign in', sign_in_path %>
-  <% end %>
 
-  <div id="flash">
-    <% flash.each do |key, value| %>
-      <div class="flash <%= key %>"><%= value %></div>
-    <% end %>
-  </div>
-
-  <%= yield %>
+    <%= yield %>
   </body>
 </html>
