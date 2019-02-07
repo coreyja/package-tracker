@@ -33,6 +33,8 @@ config.webpacker.check_yarn_integrity = true
     config.cache_store = :null_store
   end
 
+  config.action_mailer.default_url_options = { :host => "package-tracker.dev" }
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 

@@ -60,6 +60,12 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-remote'
   gem 'rubocop-coreyja', '0.2.0'
+
+  gem 'capybara'
+  gem 'capybara-selenium'
+  gem 'factory_bot_rails'
+  gem 'rspec'
+  gem 'rspec-rails'
 end
 
 group :development do
