@@ -1,0 +1,44 @@
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <!-- navbar items, navbar burger... -->
+    <%= link_to root_url, class: 'navbar-item' do %>
+      <figure class="image is-28x28">
+        <%= image_tag 'launcher-icon-4x.png' %>
+      </figure>
+    <% end %>
+    <%= link_to root_url, class: 'navbar-item' do %>
+      Package Tracker
+    <% end %>
+
+    <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div class="navbar-menu" id="navMenu">
+    <!-- navbar start, navbar end -->
+    <div class="navbar-start">
+      <!-- navbar items -->
+      <%= link_to 'My Packages', my_packages_path, class: 'navbar-item' %>
+    </div>
+
+    <div class="navbar-end">
+      <!-- navbar items -->
+      <% if signed_in? %>
+        <div class="navbar-item">
+          Signed in as: <%= current_user.email %>
+        </div>
+        <div class="navbar-item">
+          <%= button_to 'Sign out', sign_out_path, method: :delete, class: 'button' %>
+        </div>
+      <% else %>
+        <div class="navbar-item">
+          <%= link_to 'Sign in', sign_in_path, class: 'button' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</nav>
+

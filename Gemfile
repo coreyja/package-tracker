@@ -9,7 +9,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.6'
+gem 'rails', '~> 5.2.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 # Use Puma as the app server
@@ -37,6 +37,8 @@ gem 'jbuilder', '~> 2.8'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'webpacker', '~> 3.5'
+
 gem 'clearance'
 gem 'clockwork'
 gem 'ddtrace'
@@ -58,6 +60,12 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-remote'
   gem 'rubocop-coreyja', '0.2.0'
+
+  gem 'capybara'
+  gem 'capybara-selenium'
+  gem 'factory_bot_rails'
+  gem 'rspec'
+  gem 'rspec-rails'
 end
 
 group :development do
