@@ -37,6 +37,8 @@ gem 'jbuilder', '~> 2.8'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'webpacker', '~> 3.5'
+
 gem 'clearance'
 gem 'clockwork'
 gem 'ddtrace'
