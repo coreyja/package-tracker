@@ -3,16 +3,17 @@ jobs:
   test:
     working_directory: ~/package-tracker
     docker:
-      - image: pawurb/ruby-jemalloc-node-yarn:latest
+      - image: circleci/ruby:2.5.3-node-browsers
         environment:
           RAILS_ENV: test
+          RACK_ENV: test
       - image: circleci/postgres:9.4.12-alpine
     steps:
       - checkout
 
       # Restore bundle cache
       - type: cache-restore
-        key: package-tracker-v1-{{ checksum "Gemfile.lock" }}
+        key: package-tracker-v1-bundler-{{ checksum ".ruby-version" }}-{{ checksum "Gemfile.lock" }}
 
       # Bundle install dependencies
       - run: bundle config --local path "vendor/bundle"
@@ -23,12 +24,49 @@ jobs:
 
       # Store bundle cache
       - type: cache-save
-        key: package-tracker-v1-{{ checksum "Gemfile.lock" }}
+        key: package-tracker-v1-bundler-{{ checksum ".ruby-version" }}-{{ checksum "Gemfile.lock" }}
         paths:
           - vendor/bundle
 
+
+      # Restore yarn cache
+      - type: cache-restore
+        key: package-tracker-v1-yarn-{{ checksum ".node-version" }}-{{ checksum "yarn.lock" }}
+
+      # Bundle install dependencies
+      - run: yarn install --frozen-lockfile
+
+      # Store bundle cache
+      - type: cache-save
+        key: package-tracker-v1-yarn-{{ checksum ".node-version" }}-{{ checksum "yarn.lock" }}
+        paths:
+          - node_modules
+
       - type: shell
-        command: bundle exec rubocop
+        command: |
+          bundle exec rubocop \
+            --config .rubocop.yml \
+            --format progress \
+            --force-exclusion \
+            $(bundle exec rubocop --list-target-files | circleci tests split --split-by=filesize)
+
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: Setup DB
+          command: bundle exec rake db:create db:schema:load db:migrate --trace
+
+      # Run rspec in parallel
+      - type: shell
+        command: |
+          bundle exec rspec --profile 10 \
+                            --format RspecJunitFormatter \
+                            --out /tmp/test-results/rspec.xml \
+                            --format progress \
+                            $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+
 
       # Save artifacts
       - type: store_test_results
@@ -39,9 +77,9 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "27:70:c5:09:00:c4:03:97:13:2e:f5:47:e4:a2:3f:97"
+            - "05:78:af:2e:79:4d:c9:bf:ac:ca:8e:70:c1:e7:28:0a"
       - run: |
-          echo 'dokku.coreyja.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBG2yW0ZfNQWo1fXW1Tca2rTJE9dcN+8uCadvIp0YSsrgFd/6qv14KCR+ClmmIpBqXQV04yjZ3b09P6APJrQm3wg=' >> ~/.ssh/known_hosts
+          echo 'dokku.coreyja.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBP6nGreJURW3y+sMBMJFcZz1/Ne58qmLWATp/dhqqSiN9fU70ZqupHe4V6aCD7jLyGOY2EXGVAHM3LQbYB50QhQ=' >> ~/.ssh/known_hosts
       - checkout
       - run:
           name: Deploy with git push
