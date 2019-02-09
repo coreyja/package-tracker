@@ -11,7 +11,7 @@ steps:
   environment:
     RAILS_ENV: test
   commands:
-  - bundle config --local path "vendor/bundle"
+  - bundle config --local path "/tmp/vendor/bundle"
   - bundle install --frozen --jobs 5 --retry 5
   - yarn install --frozen-lockfile
   - chromedriver -v
