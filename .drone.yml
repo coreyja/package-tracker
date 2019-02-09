@@ -13,7 +13,7 @@ steps:
   commands:
   - bundle config --local path "/tmp/vendor/bundle"
   - bundle install --frozen --jobs 5 --retry 5
-  - yarn install --frozen-lockfile
+  - yarn install --frozen-lockfile --modules-folder /tmp/vendor/yarn
   - chromedriver -v
   - bundle exec rake assets:precompile
   - bundle exec rake
