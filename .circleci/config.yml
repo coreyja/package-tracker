@@ -48,7 +48,7 @@ jobs:
 
       - run:
           name: Setup DB
-          command: bundle exec rake db:create db:schema:load --trace
+          command: bundle exec rake db:create db:schema:load db:reset --trace
 
       - run: bundle exec rake
 
