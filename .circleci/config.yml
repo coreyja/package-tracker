@@ -96,5 +96,5 @@ workflows:
             - test
           filters:
             branches:
-              only: ca/master/circleci
+              only: master
 
