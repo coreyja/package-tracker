@@ -11,7 +11,7 @@ steps:
   environment:
     RAILS_ENV: test
   commands:
-  - mkdir node_modules
+  - sudo mkdir node_modules
   - yarn install --frozen-lockfile
   - bundle install --frozen --jobs 5 --retry 5
   - chromedriver -v
