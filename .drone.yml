@@ -7,8 +7,10 @@ platform:
 
 steps:
 - name: test
-  image: 'nbulai/ruby-chromedriver:2.5.3'
+  image: 'circleci/ruby:2.5.3-node-browsers'
   commands:
   - bundle install
+  - yarn install
   - chromedriver -v
+  - bundle exec rake assets:precompile
   - bundle exec rake
