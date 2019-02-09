@@ -7,13 +7,7 @@ jobs:
         environment:
           RAILS_ENV: test
           RACK_ENV: test
-          PGHOST: 127.0.0.1
-          PGUSER: circleci
-          PGDB: package_tracker_test
       - image: circleci/postgres:9.4.12-alpine
-        environment:
-          POSTGRES_USER: circleci
-          POSTGRES_DB: package_tracker_test
     steps:
       - checkout
 
