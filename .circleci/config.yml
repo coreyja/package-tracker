@@ -3,7 +3,7 @@ jobs:
   test:
     working_directory: ~/package-tracker
     docker:
-      - image: pawurb/ruby-jemalloc-node-yarn:latest
+      - image:circleci/ruby:2.5.3-node-browsers
         environment:
           RAILS_ENV: test
       - image: circleci/postgres:9.4.12-alpine
@@ -12,7 +12,7 @@ jobs:
 
       # Restore bundle cache
       - type: cache-restore
-        key: package-tracker-v1-{{ checksum "Gemfile.lock" }}
+        key: package-tracker-v1-bundler-{{ checksum ".ruby-version" }}-{{ checksum "Gemfile.lock" }}
 
       # Bundle install dependencies
       - run: bundle config --local path "vendor/bundle"
@@ -23,12 +23,25 @@ jobs:
 
       # Store bundle cache
       - type: cache-save
-        key: package-tracker-v1-{{ checksum "Gemfile.lock" }}
+        key: package-tracker-v1-bundler-{{ checksum ".ruby-version" }}-{{ checksum "Gemfile.lock" }}
         paths:
           - vendor/bundle
 
-      - type: shell
-        command: bundle exec rubocop
+
+      # Restore yarn cache
+      - type: cache-restore
+        key: package-tracker-v1-yarn-{{ checksum ".node-version" }}-{{ checksum "yarn.lock" }}
+
+      # Bundle install dependencies
+      - run: yarn install --frozen-lockfile
+
+      # Store bundle cache
+      - type: cache-save
+        key: package-tracker-v1-yarn-{{ checksum ".node-version" }}-{{ checksum "yarn.lock" }}
+        paths:
+          - node_modules
+
+      - run: bundle exec rake
 
       # Save artifacts
       - type: store_test_results
