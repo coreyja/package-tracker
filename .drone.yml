@@ -11,8 +11,9 @@ steps:
   environment:
     RAILS_ENV: test
   commands:
-  - bundle install --frozen --jobs 5 --retry 5
+  - mkdir node_modules
   - yarn install --frozen-lockfile
+  - bundle install --frozen --jobs 5 --retry 5
   - chromedriver -v
   - bundle exec rake assets:precompile
   - bundle exec rake
