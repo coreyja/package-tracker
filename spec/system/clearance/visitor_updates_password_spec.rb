@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'support/features/clearance_helpers'
+require 'support/system/clearance_helpers'
 
 RSpec.describe 'Visitor updates password' do
   it 'with valid password' do

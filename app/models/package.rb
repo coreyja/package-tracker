@@ -3,6 +3,9 @@
 class Package < ApplicationRecord
   belongs_to :user
   has_many :tracking_updates, dependent: :destroy
+  has_one :most_recent_tracking_update,
+          -> { with_tracking_updated_at.newest_first.limit(1) },
+          class_name: 'TrackingUpdate'
 
   STATUS_OPTIONS = %i[
     unknown
@@ -34,15 +37,11 @@ class Package < ApplicationRecord
   end
 
   def order
-    most_recent_update.to_i
+    most_recently_updated_at.to_i
   end
 
-  def most_recent_update
-    if tracking_updates.loaded?
-      tracking_updates.select(&:tracking_updated_at?).min_by(&:tracking_updated_at).tracking_updated_at
-    else
-      tracking_updates.where.not(tracking_updated_at: nil).newest_first.first.tracking_updated_at
-    end
+  def most_recently_updated_at
+    most_recent_tracking_update&.tracking_updated_at
   end
 
   private

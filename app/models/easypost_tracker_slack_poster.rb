@@ -1,15 +1,13 @@
 # frozen_string_literal: true
 
 class EasypostTrackerSlackPoster
-  SLACK_URL = ENV['SLACK_POST_URL'].freeze
-
   def initialize(package, tracker)
     @package = package
     @tracker = tracker
   end
 
   def post
-    RestClient.post(SLACK_URL, json.to_json, content_type: :json, accept: :json)
+    RestClient.post(Rails.application.secrets.slack_url, json.to_json, content_type: :json, accept: :json)
   end
 
   private

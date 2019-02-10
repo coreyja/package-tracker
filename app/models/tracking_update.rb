@@ -21,6 +21,7 @@ class TrackingUpdate < ApplicationRecord
 
   geocoded_by :full_street_address
 
+  scope :with_tracking_updated_at, -> { where.not(tracking_updated_at: nil) }
   scope :newest_first, -> { order tracking_updated_at: :desc }
 
   attr_accessor :latitude, :longitude
