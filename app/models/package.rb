@@ -38,7 +38,11 @@ class Package < ApplicationRecord
   end
 
   def most_recent_update
-    tracking_updates.where.not(tracking_updated_at: nil).newest_first.pluck(:tracking_updated_at).first
+    if tracking_updates.loaded?
+      tracking_updates.select(&:tracking_updated_at?).min_by(&:tracking_updated_at).tracking_updated_at
+    else
+      tracking_updates.where.not(tracking_updated_at: nil).newest_first.first.tracking_updated_at
+    end
   end
 
   private
