@@ -21,21 +21,23 @@
 
   <%= link_to 'Refresh', my_package_tracking_refresh_path(@package), method: :post, class: 'button is-info' %>
 
-  <table class="Package-table TrackUpdateTable table is-fullwidth is-striped">
-    <thead>
-      <tr>
-        <th>Message</th>
-        <th>Status</th>
-        <th>City</th>
-        <th>State</th>
-        <th>Zip</th>
-        <th>County</th>
-        <th>Updated At</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= render partial: 'tracking_update_row', as: :tracking_update, collection: @package.tracking_updates.newest_first %>
-    </tbody>
-  </table>
+  <div class="horizontal-scrollable-table">
+    <table class="Package-table TrackUpdateTable table is-fullwidth is-striped">
+      <thead>
+        <tr>
+          <th>Message</th>
+          <th>Status</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Zip</th>
+          <th>County</th>
+          <th>Updated At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: 'tracking_update_row', as: :tracking_update, collection: @package.tracking_updates.newest_first %>
+      </tbody>
+    </table>
+  </div>
 
 </div>
