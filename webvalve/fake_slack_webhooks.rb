@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FakeSlackWebhooks < WebValve::FakeService
   # # define your routes here
   #

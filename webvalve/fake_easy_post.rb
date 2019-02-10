@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class FakeEasyPost < WebValve::FakeService
-  @@tracking_details_enabled = true
+  @tracking_details_enabled = true
 
   def self.tracking_details_enabled=(enabled = true)
-    @@tracking_details_enabled = enabled
+    @tracking_details_enabled = enabled
   end
 
   def self.tracking_details_enabled?
-    @@tracking_details_enabled
+    @tracking_details_enabled
   end
 
   post '/v2/trackers' do
