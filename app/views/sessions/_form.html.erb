@@ -1,4 +1,4 @@
-<%= form_for :session, url: session_path do |form| %>
+<%= form_for :session, url: session_path, class: 'container' do |form| %>
   <div class="field">
     <%= form.label :email, class: 'label' %>
     <div class="control has-icons-left">
@@ -19,14 +19,17 @@
     </div>
   </div>
 
-  <div class="submit-field">
-    <%= form.submit %>
-  </div>
-
-  <div class="other-links">
+  <div class="field is-grouped is-grouped-multiline is-grouped-centered">
+    <p class="control">
+      <%= form.submit class: 'button is-primary' %>
+    </p>
     <% if Clearance.configuration.allow_sign_up? %>
-      <%= link_to t(".sign_up"), sign_up_path %>
+      <p class="control">
+        <%= link_to t(".sign_up"), sign_up_path, class: 'button is-secondary' %>
+      </p>
     <% end %>
-    <%= link_to t(".forgot_password"), new_password_path %>
+    <p class="control">
+      <%= link_to t(".forgot_password"), new_password_path, class: 'button is-text' %>
+    </p>
   </div>
 <% end %>
