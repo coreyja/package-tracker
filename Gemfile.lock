@@ -82,7 +82,7 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.4)
-    ddtrace (0.19.0)
+    ddtrace (0.19.1)
       msgpack
       opentracing (>= 0.4.1)
     declarative (0.0.10)
