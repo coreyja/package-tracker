@@ -51,7 +51,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'rest-client'
 gem 'simple_form'
-gem 'skylight'
+gem 'sentry-raven'
 gem 'tracking_number'
 
 group :development, :test do
