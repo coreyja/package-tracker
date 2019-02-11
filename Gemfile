@@ -50,8 +50,8 @@ gem 'google-cloud-pubsub'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'rest-client'
-gem 'simple_form'
 gem 'sentry-raven'
+gem 'simple_form'
 gem 'tracking_number'
 
 group :development, :test do
