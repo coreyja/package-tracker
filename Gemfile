@@ -59,7 +59,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'pry-rails'
   gem 'pry-remote'
-  gem 'rubocop-coreyja', '0.2.0'
+  gem 'rubocop-coreyja', '0.3.0'
 
   gem 'capybara'
   gem 'capybara-selenium'
