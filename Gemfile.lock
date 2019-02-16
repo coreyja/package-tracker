@@ -126,7 +126,7 @@ GEM
       google-cloud-env (~> 1.0)
     google-cloud-env (1.0.5)
       faraday (~> 0.11)
-    google-cloud-pubsub (0.34.0)
+    google-cloud-pubsub (0.34.1)
       concurrent-ruby (~> 1.0)
       google-cloud-core (~> 1.2)
       google-gax (~> 1.3)
