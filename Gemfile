@@ -37,8 +37,11 @@ gem 'jbuilder', '~> 2.8'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'serviceworker-rails', git: 'https://github.com/rossta/serviceworker-rails.git', ref: '757db5354c9e47a144397c4655f3d1cab6046bc0'
+gem 'serviceworker-rails',
+    git: 'https://github.com/rossta/serviceworker-rails.git',
+    ref: '757db5354c9e47a144397c4655f3d1cab6046bc0'
 gem 'webpacker', '~> 3.5'
+gem 'webpush', '~> 0.3.6'
 
 gem 'clearance'
 gem 'clockwork'
@@ -76,6 +79,7 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'flamegraph'

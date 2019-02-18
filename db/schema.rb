@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_22_231837) do
+ActiveRecord::Schema.define(version: 2019_02_18_035041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,17 @@ ActiveRecord::Schema.define(version: 2018_09_22_231837) do
     t.index ["user_id"], name: "index_packages_on_user_id"
   end
 
+  create_table "push_notification_registrations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "endpoint", null: false
+    t.text "p256dh", null: false
+    t.text "auth", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "endpoint", "p256dh", "auth"], name: "index_push_notification_registrations_on_everything", unique: true
+    t.index ["user_id"], name: "index_push_notification_registrations_on_user_id"
+  end
+
   create_table "tracking_updates", id: :serial, force: :cascade do |t|
     t.integer "package_id", null: false
     t.text "message", null: false
@@ -98,5 +109,6 @@ ActiveRecord::Schema.define(version: 2018_09_22_231837) do
   add_foreign_key "authentications", "users"
   add_foreign_key "gmail_watches", "authentications"
   add_foreign_key "packages", "users"
+  add_foreign_key "push_notification_registrations", "users"
   add_foreign_key "tracking_updates", "packages"
 end

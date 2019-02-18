@@ -8,3 +8,5 @@
 # WebValve.whitelist_url 'https://example.com'
 WebValve.register FakeEasyPost, url: 'https://api.easypost.com'
 WebValve.register FakeSlackWebhooks, url: 'https://hooks.slack.com'
+
+WebValve.whitelist_url 'https://fcm.googleapis.com'
