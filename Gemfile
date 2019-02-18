@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.8'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'serviceworker-rails', git: 'https://github.com/rossta/serviceworker-rails.git', ref: '757db5354c9e47a144397c4655f3d1cab6046bc0'
 gem 'webpacker', '~> 3.5'
 
 gem 'clearance'
@@ -80,6 +81,9 @@ group :development do
   gem 'flamegraph'
   gem 'rack-mini-profiler', require: false
   gem 'stackprof'
+
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do

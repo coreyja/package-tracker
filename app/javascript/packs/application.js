@@ -36,3 +36,10 @@ document.addEventListener('turbolinks:load', () => {
   }
 
 });
+
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register('/sw-push-notifications.js', { scope: './' })
+    .then(function(reg) {
+      console.log('[Page] Service worker registered!');
+    });
+}

@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/rossta/serviceworker-rails.git
+  revision: 757db5354c9e47a144397c4655f3d1cab6046bc0
+  ref: 757db5354c9e47a144397c4655f3d1cab6046bc0
+  specs:
+    serviceworker-rails (0.5.5)
+      railties (>= 3.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -48,7 +56,13 @@ GEM
     ast (2.4.0)
     backports (3.11.4)
     bcrypt (3.1.12)
+    better_errors (2.5.0)
+      coderay (>= 1.0.0)
+      erubi (>= 1.0.0)
+      rack (>= 0.9.0)
     bindex (0.5.0)
+    binding_of_caller (0.8.0)
+      debug_inspector (>= 0.0.1)
     builder (3.2.3)
     byebug (11.0.0)
     capybara (3.13.2)
@@ -85,6 +99,7 @@ GEM
     ddtrace (0.19.1)
       msgpack
       opentracing (>= 0.4.1)
+    debug_inspector (0.0.3)
     declarative (0.0.10)
     declarative-option (0.1.0)
     delayed_job (4.1.5)
@@ -420,6 +435,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  better_errors
+  binding_of_caller
   byebug
   capybara
   capybara-selenium
@@ -453,6 +470,7 @@ DEPENDENCIES
   rubocop-junit-formatter
   sass-rails (~> 5.0)
   sentry-raven
+  serviceworker-rails!
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
