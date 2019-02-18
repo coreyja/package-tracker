@@ -12,9 +12,5 @@ RSpec.describe 'User registers for Push Notifications' do
 
     visit my_push_notification_registrations_path
     expect(page).to have_content 'Push Notification Registrations'
-
-    click_button 'Register'
-
-    expect(PushNotificationRegistration.count).to eq 1
   end
 end
