@@ -11,11 +11,34 @@ class FakeEasyPost < WebValve::FakeService
     @tracking_details_enabled
   end
 
+  def self.event_details_json
+    event_hash.to_json
+  end
+
   post '/v2/trackers' do
     json tracking_hash
   end
 
   private
+
+  def event_hash
+    {
+      'object' => 'Event',
+      'result' => tracking_hash,
+      'description' => 'tracker.updated',
+      'mode' => 'test',
+      'previous_attributes' => {
+        'status' => 'unknown'
+      },
+      'created_at' => '2019-03-03T03:34:26Z',
+      'pending_urls' => [],
+      'completed_urls' => [],
+      'updated_at' => '2019-03-03T03:34:26Z',
+      'id' => 'evt_4f7328c1cab94dfdbc7fd2bfda2ba151',
+      'user_id' => 'user_024c895e1c1a48c19c29c5fdcf197cac',
+      'status' => 'in_queue'
+    }
+  end
 
   def tracking_hash
     {
