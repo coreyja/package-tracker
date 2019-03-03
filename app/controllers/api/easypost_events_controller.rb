@@ -5,14 +5,8 @@ module Api
     skip_before_action :verify_authenticity_token, only: :create
 
     def create
-      Delayed::Job.enqueue EasypostEventPerformer.new(params.to_h.deep_symbolize_keys)
+      Delayed::Job.enqueue EasypostEventPerformer.new(request.raw_post)
       head :no_content
-    end
-
-    private
-
-    def params
-      super.tap(&:permit!)
     end
   end
 end

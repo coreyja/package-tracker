@@ -20,8 +20,10 @@ class EasypostEventPerformer
   end
   using EasypostResourceRefinements
 
-  def initialize(hash)
-    @hash = hash
+  attr_reader :post_body
+
+  def initialize(post_body)
+    @post_body = post_body
   end
 
   def perform
@@ -30,10 +32,13 @@ class EasypostEventPerformer
 
   private
 
-  attr_reader :hash
   delegate :result, to: :event
 
   def event
-    EasyPost::Util.convert_to_easypost_object(hash, Rails.application.secrets.easypost_api_key)
+    @event ||= EasyPost::Util.convert_to_easypost_object(hash, Rails.application.secrets.easypost_api_key)
+  end
+
+  def hash
+    @hash ||= JSON.parse(post_body).to_hash.deep_symbolize_keys
   end
 end

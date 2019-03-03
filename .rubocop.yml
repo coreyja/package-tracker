@@ -13,3 +13,6 @@ AllCops:
     - 'config/**/*'
     - 'node_modules/**/*'
 
+RSpec/MultipleExpectations:
+  Enabled: false
+
