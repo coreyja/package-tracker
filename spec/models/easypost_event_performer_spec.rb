@@ -20,9 +20,9 @@ RSpec.describe EasypostEventPerformer do
 
       it 'updates the associated package object and sends a push notification' do
         expect { subject.perform }
-          .to(change { package.reload.status }.from('unknown').to('in_transit'))
-          .and(change { package.reload.tracking_updates.count }.from(0).to(2))
-          .and(enqueue_job(PackageUpdatePushNotificationJob).with(package).exactly(:once))
+          .to change { package.reload.status }.from('unknown').to('in_transit')
+          .and change { package.reload.tracking_updates.count }.from(0).to(2)
+          .and enqueue_job(PackageUpdatePushNotificationJob).with(package).exactly(:once)
         expect(package.tracking_updates.pluck(:status)).to match_array %w[pre_transit in_transit]
       end
 

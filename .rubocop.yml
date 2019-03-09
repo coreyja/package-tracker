@@ -22,3 +22,9 @@ RSpec/NamedSubject:
 RSpec/LetSetup:
   Enabled: false
 
+FactoryBot/StaticAttributeDefinedDynamically:
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  Exclude:
+    - 'spec/**/*'
