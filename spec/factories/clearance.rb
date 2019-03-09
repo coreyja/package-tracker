@@ -7,6 +7,6 @@ FactoryBot.define do
 
   factory :user do
     email
-    password { 'password' } # rubocop:disable FactoryBot/StaticAttributeDefinedDynamically
+    password { 'password' }
   end
 end

@@ -13,3 +13,18 @@ AllCops:
     - 'config/**/*'
     - 'node_modules/**/*'
 
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
+FactoryBot/StaticAttributeDefinedDynamically:
+  Enabled: false
+
+Layout/MultilineMethodCallIndentation:
+  Exclude:
+    - 'spec/**/*'

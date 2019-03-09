@@ -10,8 +10,11 @@ class PackageTrackerUpdate
 
   def perform!
     package.transaction do
-      send_slack_update! if new_tracking_updates?
       package.update! tracker.to_package_attrs
+      if send_notification?
+        send_slack_update!
+        send_push_notifications!
+      end
       process_tracking_updates!
     end
   end
@@ -30,7 +33,15 @@ class PackageTrackerUpdate
     EasypostTrackerSlackPoster.new(package, tracker).post
   end
 
-  def new_tracking_updates?
+  def send_push_notifications!
+    PackageUpdatePushNotificationJob.perform_later(package)
+  end
+
+  def push_notification_registrations
+    package.user.push_notification_registrations
+  end
+
+  def send_notification?
     package.tracking_updates.count != tracker.tracking_details.count
   end
 
