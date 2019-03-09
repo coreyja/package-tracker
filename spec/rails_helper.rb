@@ -24,6 +24,7 @@ require 'selenium/webdriver'
 # require only the support files necessary.
 #
 # Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
+require 'support/negated_matchers'
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
@@ -51,5 +52,9 @@ RSpec.configure do |config|
 
   config.before(:each, type: :system) do
     driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
+  end
+
+  config.before do
+    ActiveJob::Base.queue_adapter = :test
   end
 end

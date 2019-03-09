@@ -16,3 +16,9 @@ AllCops:
 RSpec/MultipleExpectations:
   Enabled: false
 
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
