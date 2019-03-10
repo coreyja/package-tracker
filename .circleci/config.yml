@@ -71,6 +71,8 @@ jobs:
       # Save artifacts
       - type: store_test_results
         path: /tmp/test-results
+      - type: store_test_artifactis
+        path: ./tmp/screenshots
   deploy:
     docker:
       - image: circleci/ruby:latest
