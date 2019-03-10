@@ -11,9 +11,7 @@ class PackageTrackerUpdate
   def perform!
     package.transaction do
       package.update! tracker.to_package_attrs
-      if send_notification?
-        send_push_notifications!
-      end
+      send_push_notifications! if send_notification?
       process_tracking_updates!
     end
   end
