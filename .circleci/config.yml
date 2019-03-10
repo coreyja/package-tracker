@@ -89,8 +89,8 @@ jobs:
     docker:
       - image: circleci/ruby:latest
     steps:
-      - setup_remote_docker:
-          docker_layer_caching: true
+      - checkout
+      - setup_remote_docker
       - run:
           name: Build Docker image
           command: |
