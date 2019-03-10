@@ -1,6 +1,6 @@
 FROM pawurb/ruby-jemalloc-node-yarn:latest
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata && apt-get clean
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata git && apt-get clean
 
 RUN mkdir /app
 COPY Gemfile* /app/

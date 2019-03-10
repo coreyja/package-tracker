@@ -85,15 +85,28 @@ jobs:
           name: Deploy with git push
           command: |
             git push $GIT_DEPLOY_USERNAME@$GIT_DEPLOY_HOST:package-tracker master
+  test-build:
+    docker:
+      - image: circleci/ruby:latest
+    steps:
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Build Docker image
+          command: |
+            docker build .
 
 workflows:
   version: 2
   test-and-deploy:
     jobs:
       - test
-      - deploy:
+      - build
           requires:
             - test
+      - deploy:
+          requires:
+            - build
           filters:
             branches:
               only: master
