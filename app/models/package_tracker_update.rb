@@ -12,7 +12,6 @@ class PackageTrackerUpdate
     package.transaction do
       package.update! tracker.to_package_attrs
       if send_notification?
-        send_slack_update!
         send_push_notifications!
       end
       process_tracking_updates!
@@ -27,10 +26,6 @@ class PackageTrackerUpdate
     tracker.tracking_details.each do |tracking_detail|
       TrackingUpdatePerformer.new(package, tracking_detail).save!
     end
-  end
-
-  def send_slack_update!
-    EasypostTrackerSlackPoster.new(package, tracker).post
   end
 
   def send_push_notifications!
