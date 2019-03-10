@@ -40,7 +40,7 @@ gem 'jbuilder', '~> 2.8'
 gem 'serviceworker-rails',
     git: 'https://github.com/rossta/serviceworker-rails.git',
     ref: '757db5354c9e47a144397c4655f3d1cab6046bc0'
-gem 'webpacker', '~> 3.5'
+gem 'webpacker', '~> 4.0'
 gem 'webpush', '~> 0.3.6'
 
 gem 'clearance'
