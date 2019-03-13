@@ -51,6 +51,10 @@ class Package < ApplicationRecord
     update!(archived_at: Time.zone.now)
   end
 
+  def archived?
+    archived_at.present?
+  end
+
   private
 
   def remote_tracker

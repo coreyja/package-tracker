@@ -1,5 +1,11 @@
 <%= link_to 'Add New', new_my_package_path, class: "button" %>
 
+<% if @show_archived %>
+  <%= link_to 'Hide Archived', my_packages_path(show_archived: false), class: 'button' %>
+<% else %>
+  <%= link_to 'Show Archived', my_packages_path(show_archived: true), class: 'button' %>
+<% end %>
+
 <div class="horizontal-scrollable-table">
   <table class="table is-hoverable is-fullwidth">
     <thead>

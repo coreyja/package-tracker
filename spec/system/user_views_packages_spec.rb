@@ -34,6 +34,13 @@ RSpec.describe 'User views packages' do
 
     click_button 'Archive Package'
     has_no_package_rows
+
+    click_link 'Show Archived'
+    has_expected_number_of_package_rows(count: 1)
+    has_package_row_with_text('Archived Custom Name')
+
+    click_link 'Hide Archived'
+    has_no_package_rows
   end
 
   def view_package_with_text(package_text)

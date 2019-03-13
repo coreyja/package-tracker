@@ -1,5 +1,10 @@
 <tr>
-  <td><%= link_to package.name, my_package_path(package) %></td>
+  <td>
+    <% if package.archived? %>
+      <span class='has-text-danger'>Archived</span>
+    <% end %>
+    <%= link_to package.name, my_package_path(package) %>
+  </td>
   <td><%= package.display_status %></td>
   <td><%= package.tracking_number %></td>
   <td><%= package.carrier %></td>
