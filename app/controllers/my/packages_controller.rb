@@ -18,7 +18,7 @@ module My
     end
 
     def index
-      @packages = current_user.packages.includes(:most_recent_tracking_update).sort_by(&:order).reverse
+      @packages = current_user.packages.unarchived.includes(:most_recent_tracking_update).sort_by(&:order).reverse
     end
 
     def show

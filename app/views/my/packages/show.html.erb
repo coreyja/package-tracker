@@ -19,7 +19,9 @@
     </div>
   </div>
 
-  <%= link_to 'Refresh', my_package_tracking_refresh_path(@package), method: :post, class: 'button is-info' %>
+  <%= button_to 'Refresh', my_package_tracking_refresh_path(@package), method: :post, class: 'button is-info' %>
+
+  <%= button_to 'Archive Package', my_package_archival_path(@package), method: :post, class: 'button is-danger' %>
 
   <div class="horizontal-scrollable-table">
     <table class="Package-table TrackUpdateTable table is-fullwidth is-striped">

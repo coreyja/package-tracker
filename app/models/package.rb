@@ -21,6 +21,9 @@ class Package < ApplicationRecord
   ].freeze
   enum status: STATUS_OPTIONS.map { |x| [x, x.to_s] }.to_h
 
+  scope :archived, -> { where.not(archived_at: nil) }
+  scope :unarchived, -> { where(archived_at: nil) }
+
   validates :name, :tracking_number, :carrier, :easypost_tracking_id, :status, presence: true
   validates! :user_id, presence: true
 
@@ -42,6 +45,10 @@ class Package < ApplicationRecord
 
   def most_recently_updated_at
     most_recent_tracking_update&.tracking_updated_at
+  end
+
+  def archive!
+    update!(archived_at: Time.zone.now)
   end
 
   private

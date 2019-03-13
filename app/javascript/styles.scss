@@ -19,3 +19,7 @@ $dimensions: 16 24 28 32 48 64 96 128;
 .horizontal-scrollable-table {
   overflow-x: scroll;
 }
+
+form.button_to {
+  display: inline-block;
+}
