@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   namespace :my do
     resources :packages, only: %i(new create index show) do
       resource :tracking_refresh, only: %i(create)
+      resource :archival, only: %i(create), controller: 'package_archivals'
     end
     resources :push_notification_registrations, only: %i(index create)
   end

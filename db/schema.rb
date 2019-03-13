@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_18_035041) do
+ActiveRecord::Schema.define(version: 2019_03_10_213658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2019_02_18_035041) do
     t.string "easypost_tracking_id", null: false
     t.text "status", null: false
     t.date "estimated_delivery_date"
+    t.datetime "archived_at"
     t.index ["easypost_tracking_id"], name: "index_packages_on_easypost_tracking_id"
     t.index ["user_id"], name: "index_packages_on_user_id"
   end
