@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_10_213658) do
+ActiveRecord::Schema.define(version: 2019_03_15_013225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,4 +112,21 @@ ActiveRecord::Schema.define(version: 2019_03_10_213658) do
   add_foreign_key "packages", "users"
   add_foreign_key "push_notification_registrations", "users"
   add_foreign_key "tracking_updates", "packages"
+
+  create_view "newest_tracking_updates",  sql_definition: <<-SQL
+      SELECT DISTINCT ON (tracking_updates.package_id) tracking_updates.id,
+      tracking_updates.package_id,
+      tracking_updates.message,
+      tracking_updates.status,
+      tracking_updates.tracking_updated_at,
+      tracking_updates.city,
+      tracking_updates.state,
+      tracking_updates.country,
+      tracking_updates.zip,
+      tracking_updates.created_at,
+      tracking_updates.updated_at
+     FROM tracking_updates
+    ORDER BY tracking_updates.package_id, tracking_updates.tracking_updated_at DESC;
+  SQL
+
 end
