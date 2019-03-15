@@ -3,9 +3,11 @@
 class Package < ApplicationRecord
   belongs_to :user
   has_many :tracking_updates, dependent: :destroy
-  has_one :most_recent_tracking_update,
-          -> { with_tracking_updated_at.newest_first.limit(1) },
-          class_name: 'TrackingUpdate'
+  has_one :most_recent_tracking_update, lambda {
+    with_tracking_updated_at
+      .select('DISTINCT ON (package_id) *')
+      .order(:package_id, tracking_updated_at: :desc)
+  }, class_name: 'TrackingUpdate'
 
   STATUS_OPTIONS = %i[
     unknown
