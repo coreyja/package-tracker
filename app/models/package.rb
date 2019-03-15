@@ -3,9 +3,7 @@
 class Package < ApplicationRecord
   belongs_to :user
   has_many :tracking_updates, dependent: :destroy
-  has_one :most_recent_tracking_update,
-          -> { with_tracking_updated_at.newest_first.limit(1) },
-          class_name: 'TrackingUpdate'
+  has_one :newest_tracking_update
 
   STATUS_OPTIONS = %i[
     unknown
@@ -44,7 +42,7 @@ class Package < ApplicationRecord
   end
 
   def most_recently_updated_at
-    most_recent_tracking_update&.tracking_updated_at
+    newest_tracking_update&.tracking_updated_at
   end
 
   def archive!
@@ -53,6 +51,10 @@ class Package < ApplicationRecord
 
   def archived?
     archived_at.present?
+  end
+
+  def newest_tracking_update
+    super&.becomes(TrackingUpdate)
   end
 
   private
