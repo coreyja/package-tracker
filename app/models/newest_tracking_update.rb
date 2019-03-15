@@ -2,4 +2,7 @@
 
 class NewestTrackingUpdate < ApplicationRecord
   # This is a shell of TrackingUpdate that should not be consumed directly
+  def readonly?
+    true
+  end
 end
