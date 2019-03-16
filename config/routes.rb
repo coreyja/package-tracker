@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   delete "/sign_out" => "sessions#destroy", as: "sign_out"
   get "/sign_up" => "clearance/users#new", as: "sign_up"
 
-  root 'static#index'
+  root 'root#index'
 
   get '/auth/:provider/callback' => 'sessions#create_from_omniauth'
 
