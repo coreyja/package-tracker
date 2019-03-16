@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 2019_03_15_013225) do
   add_foreign_key "push_notification_registrations", "users"
   add_foreign_key "tracking_updates", "packages"
 
-  create_view "newest_tracking_updates",  sql_definition: <<-SQL
+  create_view "newest_tracking_updates", sql_definition: <<-SQL
       SELECT DISTINCT ON (tracking_updates.package_id) tracking_updates.id,
       tracking_updates.package_id,
       tracking_updates.message,
@@ -128,5 +128,4 @@ ActiveRecord::Schema.define(version: 2019_03_15_013225) do
      FROM tracking_updates
     ORDER BY tracking_updates.package_id, tracking_updates.tracking_updated_at DESC;
   SQL
-
 end
