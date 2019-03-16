@@ -18,12 +18,15 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback' => 'sessions#create_from_omniauth'
 
+
   namespace :api do
     resources :easypost_events, only: %i(create)
     resources :pubsub_messages, only: %i(create)
   end
 
   namespace :my do
+    resource :dashboard, only: %i(show)
+
     resources :packages, only: %i(new create index show) do
       resource :tracking_refresh, only: %i(create)
       resource :archival, only: %i(create), controller: 'package_archivals'

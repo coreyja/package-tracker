@@ -23,6 +23,8 @@ class TrackingUpdate < ApplicationRecord
 
   scope :with_tracking_updated_at, -> { where.not(tracking_updated_at: nil) }
   scope :newest_first, -> { order tracking_updated_at: :desc }
+  scope :delivered_after, ->(date) { delivered.where('tracking_updated_at >= ?', date) }
+  scope :not_delivered_on, ->(date) { delivered.where('tracking_updated_at != ?', date) }
 
   attr_accessor :latitude, :longitude
 

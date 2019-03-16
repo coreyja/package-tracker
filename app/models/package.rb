@@ -21,6 +21,10 @@ class Package < ApplicationRecord
 
   scope :archived, -> { where.not(archived_at: nil) }
   scope :unarchived, -> { where(archived_at: nil) }
+  scope :arriving_on, ->(date) { where(estimated_delivery_date: date) }
+  scope :not_arriving_on, ->(date) { where.not(estimated_delivery_date: date) }
+  scope :delivered_after, ->(date) { delivered.joins(:tracking_updates).merge(TrackingUpdate.delivered_after(date)) }
+  scope :not_delivered_on, ->(date) { joins(:tracking_updates).merge(TrackingUpdate.not_delivered_on(date)) }
 
   validates :name, :tracking_number, :carrier, :easypost_tracking_id, :status, presence: true
   validates! :user_id, presence: true
