@@ -23,5 +23,6 @@ en:
   hello: "Hello world"
   dashboard:
     add_button: Add Package
+    arriving_today_title: "%{number} Arriving Today"
     empty:
       title: Looks like you don't have any Packages Upcoming, maybe add one!

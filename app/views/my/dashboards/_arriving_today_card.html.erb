@@ -1,0 +1,36 @@
+<div class="column is-half has-paddding-20">
+  <div class="card">
+    <header class="card-header">
+      <p class="card-header-title">
+      <%= package.name %>
+      </p>
+      <span class="card-header-icon has-cursor-default has-text-info" aria-label="package icon">
+        <span class="icon">
+          <i class="far fa-box" aria-hidden="true"></i>
+        </span>
+      </span>
+    </header>
+    <div class="card-content">
+      <div class="content">
+        <span class="icon is-large">
+          <i class="fab fa-3x fa-<%= package.carrier.downcase %>" aria-hidden="true"></i>
+        </span>
+        <p>
+        <%= package.carrier %>
+        </p>
+        <p><%= package.tracking_number %></p>
+      </div>
+    </div>
+    <footer class="card-footer">
+      <div class="card-footer-item">
+        <%= package.display_status %>
+        <br />
+        <%= package.newest_tracking_update.message %>
+      </div>
+      <div class="card-footer-item">
+        Last Updated <%= package.newest_tracking_update.tracking_updated_at.strftime('%r') %>
+      </div>
+      <%# <a href="#" class="card-footer-item">Delete</a> %>
+    </footer>
+  </div>
+</div>
