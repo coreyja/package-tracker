@@ -1,0 +1,363 @@
+---
+-
+    name: ABF
+    code: ABF
+-
+    name: Associated Global Systems
+    code: AGSystems
+-
+    name: AmazonMws
+    code: AmazonMws
+    fab_icon: amazon
+-
+    name: APC
+    code: APC
+-
+    name: Aramex
+    code: Aramex
+-
+    name: ArrowXL
+    code: ArrowXL
+-
+    name: Asendia
+    code: Asendia
+-
+    name: Asendia HK
+    code: AsendiaHK
+-
+    name: Australia Post
+    code: AustraliaPost
+-
+    name: AxleHire
+    code: Axlehire
+-
+    name: Bluedart
+    code: BlueDart
+-
+    name: Boxberry
+    code: Boxberry
+-
+    name: Cainiao
+    code: Cainiao
+-
+    name: Canada Post
+    code: CanadaPost
+-
+    name: Canpar
+    code: Canpar
+-
+    name: CDL Last Mile Solutions
+    code: ColumbusLastMile
+-
+    name: China Post
+    code: ChinaPost
+-
+    name: Chronopost
+    code: Chronopost
+-
+    name: Colis Privé
+    code: ColisPrive
+-
+    name: Colissimo
+    code: Colissimo
+-
+    name: Correios
+    code: Correios
+-
+    name: Correos Chile
+    code: CorreosChile
+-
+    name: Correos Costa Rica
+    code: CorreosCostaRica
+-
+    name: CouriersPlease
+    code: CouriersPlease
+-
+    name: Dai Post
+    code: DaiPost
+-
+    name: Delhivery
+    code: Delhivery
+-
+    name: Deliv
+    code: Deliv
+-
+    name: Deutsche Post
+    code: DeutschePost
+-
+    name: DHL eCommerce Asia
+    code: DHLEcommerceAsia
+    fab_icon: dhl
+-
+    name: DHL Express
+    code: DHLExpress
+    fab_icon: dhl
+-
+    name: DHL Freight
+    code: DHLFreight
+    fab_icon: dhl
+-
+    name: DHL Germany
+    code: DHLGermany
+    fab_icon: dhl
+-
+    name: DHL eCommerce
+    code: DHLGlobalMail
+    fab_icon: dhl
+-
+    name: DHL eCommerce International
+    code: DHLGlobalmailInternational
+    fab_icon: dhl
+-
+    name: Dicom
+    code: Dicom
+-
+    name: Direct Link
+    code: DirectLink
+-
+    name: Dominos
+    code: Dominos
+-
+    name: Doorman
+    code: Doorman
+-
+    name: DPD
+    code: DPD
+-
+    name: DPD UK
+    code: DPDUK
+-
+    name: EC Firstclass
+    code: ECFirstclass
+-
+    name: Ecom Express
+    code: EcomExpress
+-
+    name: EMS
+    code: ChinaEMS
+-
+    name: Estafeta
+    code: Estafeta
+-
+    name: Estes
+    code: Estes
+-
+    name: Fastway
+    code: Fastway
+-
+    name: FedEx
+    code: FedEx
+    fab_icon: fedex
+-
+    name: FedEx Mailview
+    code: FedExMailview
+    fab_icon: fedex
+-
+    name: FedEx SameDay City
+    code: FedExSameDayCity
+    fab_icon: fedex
+-
+    name: FedEx UK
+    code: FedExUK
+    fab_icon: fedex
+-
+    name: FedEx SmartPost
+    code: FedexSmartPost
+    fab_icon: fedex
+-
+    name: FirstMile
+    code: FirstMile
+-
+    name: Flyt Express
+    code: FlytExpress
+-
+    name: Freipost
+    code: Freipost
+-
+    name: Globegistics
+    code: Globegistics
+-
+    name: GLS
+    code: GLS
+-
+    name: GSO
+    code: GSO
+-
+    name: Hermes
+    code: Hermes
+-
+    name: Hong Kong Post
+    code: HongKongPost
+-
+    name: India Post
+    code: IndiaPost
+-
+    name: Interlink Express
+    code: InterlinkExpress
+-
+    name: International Bridge
+    code: InternationalBridge
+-
+    name: Israel Post
+    code: IsraelPost
+-
+    name: Janco Freight
+    code: JancoFreight
+-
+    name: JP Post
+    code: JPPost
+-
+    name: Kuroneko Yamato
+    code: KuronekoYamato
+-
+    name: La Poste
+    code: LaPoste
+-
+    name: LaserShip
+    code: LaserShip
+-
+    name: Latvijas Pasts
+    code: LatvijasPasts
+-
+    name: Liefery
+    code: Liefery
+-
+    name: Loomis Express
+    code: LoomisExpress
+-
+    name: LSO
+    code: LSO
+-
+    name: Nanjing Woyuan
+    code: NanjingWoyuan
+-
+    name: Network4
+    code: Network4
+-
+    name: Newgistics
+    code: Newgistics
+-
+    name: Ninja Van
+    code: NinjaVan
+-
+    name: Norco
+    code: Norco
+-
+    name: Nova Poshta
+    code: NovaPoshta
+-
+    name: OnTrac
+    code: OnTrac
+-
+    name: OnTrac DirectPost
+    code: OnTracDirectPost
+-
+    name: Orange DS
+    code: OrangeDS
+-
+    name: Osm Worldwide
+    code: OsmWorldwide
+-
+    name: Parcelforce
+    code: Parcelforce
+-
+    name: Passport
+    code: Passport
+-
+    name: Pilot
+    code: Pilot
+-
+    name: POS Malaysia
+    code: POSMalaysia
+-
+    name: Postmates
+    code: Postmates
+-
+    name: PostNL
+    code: PostNL
+-
+    name: Posten
+    code: Posten
+-
+    name: PostNord
+    code: PostNord
+-
+    name: Purolator
+    code: Purolator
+-
+    name: R+L Carriers
+    code: RLCarriers
+-
+    name: Royal Mail
+    code: RoyalMail
+-
+    name: RR Donnelley
+    code: RRDonnelley
+-
+    name: Seko
+    code: Seko
+-
+    name: Singapore Post
+    code: SingaporePost
+-
+    name: SMSA Express
+    code: SMSAExpress
+-
+    name: Spee-Dee
+    code: SpeeDee
+-
+    name: SprintShip
+    code: SprintShip
+-
+    name: StarTrack
+    code: StarTrack
+-
+    name: Taiwan Post
+    code: TaiwanPost
+-
+    name: Toll
+    code: Toll
+-
+    name: TForce
+    code: TForce
+-
+    name: UDS
+    code: UDS
+-
+    name: Ukrposhta
+    code: Ukrposhta
+-
+    name: UPS
+    code: UPS
+    fab_icon: ups
+-
+    name: UPS i-parcel
+    code: UPSIparcel
+    fab_icon: ups
+-
+    name: UPS Mail Innovations
+    code: UPSMailInnovations
+    fab_icon: ups
+-
+    name: USF Holland
+    code: USFHolland
+-
+    name: USPS
+    code: USPS
+    fab_icon: usps
+-
+    name: Watkins & Shepard
+    code: WatkinsAndShepard
+-
+    name: wnDirect
+    code: wnDirect
+-
+    name: Yanwen
+    code: Yanwen
+-
+    name: Yodel
+    code: Yodel
+-
+    name: Yun Express
+    code: YunExpress
+
