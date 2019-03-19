@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
-class My::DashboardsController < ApplicationController
-  before_action :require_login
+module My
+  class DashboardsController < ApplicationController
+    before_action :require_login
 
-  def show
-    @dashboard = DashboardPresenter.new(user: current_user)
+    def show
+      @dashboard = DashboardPresenter.new(user: current_user)
+    end
   end
 end

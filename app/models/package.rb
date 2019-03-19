@@ -62,7 +62,7 @@ class Package < ApplicationRecord
   end
 
   def carrier
-    @carrier ||= EasypostCarrier.all.find { |carrier| carrier.code.downcase == carrier_code.downcase }
+    @carrier ||= EasypostCarrier.all.find { |carrier| carrier.code.casecmp(carrier_code).zero? }
   end
 
   private
