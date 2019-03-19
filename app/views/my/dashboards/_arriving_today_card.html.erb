@@ -1,36 +1,36 @@
 <div class="column is-half has-paddding-20">
   <div class="card">
     <header class="card-header">
-      <p class="card-header-title">
-      <%= package.name %>
-      </p>
+      <div class="card-header-title is-block">
+        <p>
+          <%= package.name %> <span class="has-text-weight-normal">- <%= package.tracking_number %></span>
+        </p>
+        <p class="is-size-7 has-text-weight-normal">
+          <%= package.carrier.name %>
+        </p>
+      </div>
       <span class="card-header-icon has-cursor-default has-text-info" aria-label="package icon">
-        <span class="icon">
-          <i class="far fa-box" aria-hidden="true"></i>
+        <span class="icon is-large">
+          <% if package.carrier.icon? %>
+            <i class="fab fa-3x fa-<%= package.carrier.fab_icon %>" aria-hidden="true"></i>
+          <% else %>
+            <i class="far fa-2x fa-box" aria-hidden="true"></i>
+          <% end %>
         </span>
       </span>
     </header>
-    <div class="card-content">
-      <div class="content">
-        <% if package.carrier.icon? %>
-          <span class="icon is-large">
-            <i class="fab fa-3x fa-<%= package.carrier.fab_icon %>" aria-hidden="true"></i>
-          </span>
-        <% end %>
-        <p>
-        <%= package.carrier.name %>
-        </p>
-        <p><%= package.tracking_number %></p>
-      </div>
-    </div>
     <footer class="card-footer">
-      <div class="card-footer-item">
-        <%= package.display_status %>
-        <br />
-        <%= package.newest_tracking_update.message %>
+      <div class="card-footer-item is-size-7 flex-column align-items-flex-start">
+        <p>
+          <%= package.display_status %>
+        </p>
+        <p>
+          <%= package.newest_tracking_update.message %>
+        </p>
       </div>
-      <div class="card-footer-item">
-        Last Updated <%= package.newest_tracking_update.tracking_updated_at.strftime('%r') %>
+      <div class="card-footer-item is-size-7 flex-column align-items-flex-end">
+        <p>Last Updated</p>
+        <p><%= package.newest_tracking_update.tracking_updated_at.strftime('%r') %></p>
       </div>
       <%# <a href="#" class="card-footer-item">Delete</a> %>
     </footer>

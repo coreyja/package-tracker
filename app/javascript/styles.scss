@@ -32,4 +32,8 @@ form.button_to {
   display: inline-block;
 }
 
+.is-block {
+  display: block !important;
+}
+
 @import '~bulma-helpers/sass/helpers/_all'
