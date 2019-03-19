@@ -13,19 +13,32 @@ class FakeEasyPost < WebValve::FakeService
     Inner.new.event_details_json
   end
 
+  def self.est_delivery_date=(date)
+    Inner.est_delivery_date = date
+  end
+
   post '/v2/trackers' do
     json Inner.new.tracking_hash
   end
 
   class Inner
     @tracking_details_enabled = true
+    @est_delivery_date = nil
 
-    def self.tracking_details_enabled=(enabled = true)
+    def self.tracking_details_enabled=(enabled)
       @tracking_details_enabled = enabled
+    end
+
+    def self.est_delivery_date=(date)
+      @est_delivery_date = date
     end
 
     def self.tracking_details_enabled?
       @tracking_details_enabled
+    end
+
+    def self.est_delivery_date
+      @est_delivery_date
     end
 
     def event_details_json
@@ -62,7 +75,7 @@ class FakeEasyPost < WebValve::FakeService
         'updated_at' => '2016-01-13T21:52:32Z',
         'signed_by' => nil,
         'weight' => nil,
-        'est_delivery_date' => nil,
+        'est_delivery_date' => self.class.est_delivery_date.iso8601,
         'shipment_id' => nil,
         'carrier' => 'USPS',
         'public_url' => 'https://track.easypost.com/djE6...',
