@@ -2,7 +2,7 @@
 <%= simple_form_for @package_creator, url: my_packages_path do |f| %>
     <%= f.input :name %>
     <%= f.input :tracking_number %>
-    <%= f.input :carrier %>
+    <%= f.input :carrier_code %>
 
     <div class="field is-grouped is-grouped-multiline is-grouped-centered">
       <%= f.submit 'Create Package', class: 'button is-primary' %>

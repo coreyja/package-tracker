@@ -3,9 +3,9 @@
 class PackageCreator
   include ActiveModel::Model
 
-  attr_accessor :user, :name, :tracking_number, :carrier
+  attr_accessor :user, :name, :tracking_number, :carrier_code
 
-  validates :name, :tracking_number, :carrier, presence: true
+  validates :name, :tracking_number, :carrier_code, presence: true
 
   def save
     valid? && save!
@@ -19,7 +19,7 @@ class PackageCreator
   private
 
   def tracker
-    @tracker = EasyPost::Tracker.create(tracking_code: tracking_number, carrier: carrier)
+    @tracker = EasyPost::Tracker.create(tracking_code: tracking_number, carrier: carrier_code)
   end
 
   def package

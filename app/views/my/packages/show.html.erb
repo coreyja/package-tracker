@@ -12,7 +12,7 @@
   </div>
   <div class="columns">
     <div class="column">
-      <%= render partial: 'card', locals: { header: 'Carrier', content: @package.carrier } %>
+      <%= render partial: 'card', locals: { header: 'Carrier', content: @package.carrier.name } %>
     </div>
     <div class="column">
       <%= render partial: 'card', locals: { header: 'Tracking Number', content: @package.tracking_number } %>

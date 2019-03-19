@@ -12,11 +12,13 @@
     </header>
     <div class="card-content">
       <div class="content">
-        <span class="icon is-large">
-          <i class="fab fa-3x fa-<%= package.carrier.downcase %>" aria-hidden="true"></i>
-        </span>
+        <% if package.carrier.icon? %>
+          <span class="icon is-large">
+            <i class="fab fa-3x fa-<%= package.carrier.fab_icon %>" aria-hidden="true"></i>
+          </span>
+        <% end %>
         <p>
-        <%= package.carrier %>
+        <%= package.carrier.name %>
         </p>
         <p><%= package.tracking_number %></p>
       </div>
