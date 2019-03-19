@@ -12,7 +12,7 @@ RSpec.describe EasypostEventPerformer do
         FactoryBot.create(
           :package,
           tracking_number: '9400110898825022579493',
-          carrier: 'USPS',
+          carrier_code: 'USPS',
           status: 'unknown',
           easypost_tracking_id: 'trk_c8e0edb5bb284caa934a0d3db23a148z'
         )
