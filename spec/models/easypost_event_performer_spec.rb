@@ -35,8 +35,10 @@ RSpec.describe EasypostEventPerformer do
       end
 
       context 'when there should NOT be updates' do
-        before do
+        around do |example|
           FakeEasyPost.tracking_details_enabled = false
+          example.run
+          FakeEasyPost.tracking_details_enabled = true
         end
 
         it 'does NOT send a push notification' do

@@ -1,44 +1,43 @@
 # frozen_string_literal: true
 
 class FakeEasyPost < WebValve::FakeService
-  def self.tracking_details_enabled=(enabled = true)
-    Inner.tracking_details_enabled = enabled
+  class << self
+    attr_accessor :tracking_details_enabled, :est_delivery_date
+
+    def event_details_json
+      inner.event_details_json
+    end
+
+    def inner
+      Inner.new(
+        est_delivery_date: est_delivery_date,
+        tracking_details_enabled: tracking_details_enabled?
+      )
+    end
+
+    def tracking_details_enabled?
+      if instance_variable_defined? :@tracking_details_enabled
+        @tracking_details_enabled
+      else
+        true
+      end
+    end
   end
 
-  def self.tracking_details_enabled?
-    Inner.tracking_details_enabled?
-  end
-
-  def self.event_details_json
-    Inner.new.event_details_json
-  end
-
-  def self.est_delivery_date=(date)
-    Inner.est_delivery_date = date
+  def inner
+    self.class.inner
   end
 
   post '/v2/trackers' do
-    json Inner.new.tracking_hash
+    json inner.tracking_hash
   end
 
   class Inner
-    @tracking_details_enabled = true
-    @est_delivery_date = nil
+    attr_reader :tracking_details_enabled, :est_delivery_date
 
-    def self.tracking_details_enabled=(enabled)
-      @tracking_details_enabled = enabled
-    end
-
-    def self.est_delivery_date=(date)
-      @est_delivery_date = date
-    end
-
-    def self.tracking_details_enabled?
-      @tracking_details_enabled
-    end
-
-    def self.est_delivery_date
-      @est_delivery_date
+    def initialize(tracking_details_enabled: true, est_delivery_date: nil)
+      @est_delivery_date = est_delivery_date
+      @tracking_details_enabled = tracking_details_enabled
     end
 
     def event_details_json
@@ -75,7 +74,7 @@ class FakeEasyPost < WebValve::FakeService
         'updated_at' => '2016-01-13T21:52:32Z',
         'signed_by' => nil,
         'weight' => nil,
-        'est_delivery_date' => self.class.est_delivery_date.iso8601,
+        'est_delivery_date' => est_delivery_date&.iso8601,
         'shipment_id' => nil,
         'carrier' => 'USPS',
         'public_url' => 'https://track.easypost.com/djE6...',
@@ -94,7 +93,7 @@ class FakeEasyPost < WebValve::FakeService
     end
 
     def tracking_details
-      if self.class.tracking_details_enabled?
+      if tracking_details_enabled
         [
           {
             'object' => 'TrackingDetail',
