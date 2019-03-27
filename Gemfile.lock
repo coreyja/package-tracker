@@ -162,7 +162,7 @@ GEM
       grpc (~> 1.0)
     googleapis-common-protos-types (1.0.3)
       google-protobuf (~> 3.0)
-    googleauth (0.8.0)
+    googleauth (0.8.1)
       faraday (~> 0.12)
       jwt (>= 1.4, < 3.0)
       memoist (~> 0.16)
