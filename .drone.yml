@@ -7,13 +7,12 @@ platform:
 
 steps:
 - name: test
-  image: 'circleci/ruby:2.5.3-node-browsers'
+  image: 'ruby:2.5.3-node-browsers'
   environment:
     RAILS_ENV: test
   commands:
-  - bundle config --local path "/tmp/vendor/bundle"
   - bundle install --frozen --jobs 5 --retry 5
-  - yarn install --frozen-lockfile --modules-folder /tmp/vendor/yarn
+  - yarn install --frozen-lockfile
   - chromedriver -v
   - bundle exec rake assets:precompile
   - bundle exec rake
