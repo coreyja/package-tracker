@@ -13,6 +13,7 @@ class PackageCreator
 
   def save!
     PackageTrackerUpdate.new(package, tracker).perform!
+    true
   end
 
   private

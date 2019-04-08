@@ -1,70 +1,45 @@
 <div class="Package">
-  <h2 class="Package-name">
-    <%= @package.name %>
-  </h2>
-
-  <h2 class="Package-status">
-    <%= @package.display_status %>
-  </h2>
-
-  <h2 class="Package-estimated">
-    <% if @package.estimated_delivery_date.present? %>
-      <%= @package.estimated_delivery_date %>
-    <% else %>
-      No Estimated Delivery Date Available
-    <% end %>
-  </h2>
-
-  <h3 class="Package-number">
-    <%= @package.tracking_number %>
-  </h3>
-
-  <h4 class="Package-carrier">
-    <%= @package.carrier %>
-  </h4>
-
-  <table class="Package-table TrackUpdateTable">
-    <thead>
-    <tr>
-      <th>Message</th>
-      <th>Status</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Zip</th>
-      <th>County</th>
-      <th>Updated At</th>
-    </tr>
-    </thead>
-    <tbody>
-    <%= render partial: 'tracking_update_row', as: :tracking_update, collection: @package.tracking_updates.newest_first %>
-    </tbody>
-  </table>
-
-  <%= link_to 'Refresh', my_package_tracking_refresh_path(@package), method: :post %>
-
-  <div class="Pacakge-map" id="Pacakge-map">
+  <div class="columns">
+    <div class="column">
+      <%= render partial: 'card', locals: { header: 'Package Name', content: @package.name } %>
+    </div>
+    <div class="column">
+      <%= render partial: 'card', locals: { header: 'Status', content: @package.display_status } %>
+    </div>
+    <div class="column">
+      <%= render partial: 'card', locals: { header: 'Estimated Delivery Date', content: @package.estimated_delivery_date&.to_formatted_s(:long_ordinal) || "No Estimated Delivery Date Available" } %>
+    </div>
   </div>
-  <script>
-      function initMap() {
-          var map = new google.maps.Map(document.getElementById('Pacakge-map'), {
-              zoom: 4,
-              center: <%= @package.map_data.first.to_json.html_safe %>,
-              mapTypeId: 'terrain'
-          });
+  <div class="columns">
+    <div class="column">
+      <%= render partial: 'card', locals: { header: 'Carrier', content: @package.carrier } %>
+    </div>
+    <div class="column">
+      <%= render partial: 'card', locals: { header: 'Tracking Number', content: @package.tracking_number } %>
+    </div>
+  </div>
 
-          var trackingCoordinates = <%= @package.map_data.to_json.html_safe %>;
-          var packagePath = new google.maps.Polyline({
-              path: trackingCoordinates,
-              geodesic: true,
-              strokeColor: '#FF0000',
-              strokeOpacity: 1.0,
-              strokeWeight: 2
-          });
+  <%= button_to 'Refresh', my_package_tracking_refresh_path(@package), method: :post, class: 'button is-info' %>
 
-          packagePath.setMap(map);
-      }
-  </script>
-  <script async defer
-          src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap">
-  </script>
+  <%= button_to 'Archive Package', my_package_archival_path(@package), method: :post, class: 'button is-danger' %>
+
+  <div class="horizontal-scrollable-table">
+    <table class="Package-table TrackUpdateTable table is-fullwidth is-striped">
+      <thead>
+        <tr>
+          <th>Message</th>
+          <th>Status</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Zip</th>
+          <th>County</th>
+          <th>Updated At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: 'tracking_update_row', as: :tracking_update, collection: @package.tracking_updates.newest_first %>
+      </tbody>
+    </table>
+  </div>
+
 </div>

@@ -20,8 +20,4 @@ class SessionsController < Clearance::SessionsController
   def user
     authentication.user
   end
-
-  def params
-    request.parameters
-  end
 end

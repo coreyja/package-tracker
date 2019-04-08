@@ -3,6 +3,7 @@
 class Package < ApplicationRecord
   belongs_to :user
   has_many :tracking_updates, dependent: :destroy
+  has_one :newest_tracking_update
 
   STATUS_OPTIONS = %i[
     unknown
@@ -17,6 +18,9 @@ class Package < ApplicationRecord
     error
   ].freeze
   enum status: STATUS_OPTIONS.map { |x| [x, x.to_s] }.to_h
+
+  scope :archived, -> { where.not(archived_at: nil) }
+  scope :unarchived, -> { where(archived_at: nil) }
 
   validates :name, :tracking_number, :carrier, :easypost_tracking_id, :status, presence: true
   validates! :user_id, presence: true
@@ -34,11 +38,23 @@ class Package < ApplicationRecord
   end
 
   def order
-    most_recent_update.to_i
+    most_recently_updated_at.to_i
   end
 
-  def most_recent_update
-    tracking_updates.where.not(tracking_updated_at: nil).newest_first.pluck(:tracking_updated_at).first
+  def most_recently_updated_at
+    newest_tracking_update&.tracking_updated_at
+  end
+
+  def archive!
+    update!(archived_at: Time.zone.now)
+  end
+
+  def archived?
+    archived_at.present?
+  end
+
+  def newest_tracking_update
+    super&.becomes(TrackingUpdate)
   end
 
   private

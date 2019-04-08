@@ -8,7 +8,7 @@ class Authentication < ApplicationRecord
     find_or_create_by!(provider: auth_hash.provider, uid: auth_hash.uid) do |authentication|
       authentication.user = current_user || User.find_or_create_by_omniauth!(auth_hash)
       authentication.token = auth_hash.credentials.token
-      authentication.expires_at = Time.at(auth_hash.credentials.expires_at).to_datetime
+      authentication.expires_at = Time.at(auth_hash.credentials.expires_at)
       authentication.refresh_token = auth_hash.credentials.refresh_token
     end
   end
@@ -16,7 +16,7 @@ class Authentication < ApplicationRecord
   def update_token!(auth_hash)
     update!(
       token: auth_hash['credentials']['token'],
-      expires_at: Time.at(auth_hash['credentials']['expires_at']).to_datetime
+      expires_at: Time.at(auth_hash['credentials']['expires_at'])
     )
   end
 
@@ -26,10 +26,11 @@ class Authentication < ApplicationRecord
 
   def refresh_google_oauth_token!
     raise 'Must be google_oauth2' unless provider.to_s == 'google_oauth2'
+
     access_token = oauth_access_token.refresh!
     update!(
       token: access_token.token,
-      expires_at: Time.at(access_token.expires_at).to_datetime
+      expires_at: Time.at(access_token.expires_at)
     )
   end
 

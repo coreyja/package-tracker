@@ -4,7 +4,7 @@
     <title>PackageTracker</title>
     <%= csrf_meta_tags %>
     <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
-    <meta name="theme-color" content="#f7b551">
+    <meta name="theme-color" content="#ccf0c3">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -23,17 +23,21 @@
 
     <%= stylesheet_pack_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-6jHF7Z3XI3fF4XZixAuSu0gGKrXwoX/w3uFPxC56OtjChio7wtTGJWRW53Nhx6Ev" crossorigin="anonymous">
   </head>
 
   <body>
     <%= render 'shared/navbar' %>
 
-    <div id="flash">
-      <% flash.each do |key, value| %>
-        <div class="flash <%= key %>"><%= value %></div>
-      <% end %>
-    </div>
+    <div class="container">
+      <div id="flash">
+        <% flash.each do |key, value| %>
+          <div class="flash <%= key %>"><%= value %></div>
+        <% end %>
+      </div>
 
-    <%= yield %>
+      <%= yield %>
+    </div>
   </body>
 </html>

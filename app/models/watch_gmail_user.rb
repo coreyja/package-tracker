@@ -8,7 +8,7 @@ class WatchGmailUser
   def perform
     response = service.watch_user('me', watch_request)
     gmail_watch.update!(
-      expires_at: Time.at(response.expiration / 1000.0).to_datetime,
+      expires_at: Time.at(response.expiration / 1000.0),
       current_history_id: response.history_id
     )
   end

@@ -18,7 +18,11 @@ module My
     end
 
     def index
-      @packages = current_user.packages.sort_by(&:order).reverse
+      @show_archived = ActiveRecord::Type::Boolean.new.deserialize(params[:show_archived])
+
+      package_relation = current_user.packages
+      package_relation = package_relation.unarchived unless @show_archived
+      @packages = package_relation.includes(:newest_tracking_update).sort_by(&:order).reverse
     end
 
     def show

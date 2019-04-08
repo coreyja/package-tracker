@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180922231837) do
+ActiveRecord::Schema.define(version: 2019_03_15_013225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,8 +63,20 @@ ActiveRecord::Schema.define(version: 20180922231837) do
     t.string "easypost_tracking_id", null: false
     t.text "status", null: false
     t.date "estimated_delivery_date"
+    t.datetime "archived_at"
     t.index ["easypost_tracking_id"], name: "index_packages_on_easypost_tracking_id"
     t.index ["user_id"], name: "index_packages_on_user_id"
+  end
+
+  create_table "push_notification_registrations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "endpoint", null: false
+    t.text "p256dh", null: false
+    t.text "auth", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "endpoint", "p256dh", "auth"], name: "index_push_notification_registrations_on_everything", unique: true
+    t.index ["user_id"], name: "index_push_notification_registrations_on_user_id"
   end
 
   create_table "tracking_updates", id: :serial, force: :cascade do |t|
@@ -98,5 +110,22 @@ ActiveRecord::Schema.define(version: 20180922231837) do
   add_foreign_key "authentications", "users"
   add_foreign_key "gmail_watches", "authentications"
   add_foreign_key "packages", "users"
+  add_foreign_key "push_notification_registrations", "users"
   add_foreign_key "tracking_updates", "packages"
+
+  create_view "newest_tracking_updates", sql_definition: <<-SQL
+      SELECT DISTINCT ON (tracking_updates.package_id) tracking_updates.id,
+      tracking_updates.package_id,
+      tracking_updates.message,
+      tracking_updates.status,
+      tracking_updates.tracking_updated_at,
+      tracking_updates.city,
+      tracking_updates.state,
+      tracking_updates.country,
+      tracking_updates.zip,
+      tracking_updates.created_at,
+      tracking_updates.updated_at
+     FROM tracking_updates
+    ORDER BY tracking_updates.package_id, tracking_updates.tracking_updated_at DESC;
+  SQL
 end

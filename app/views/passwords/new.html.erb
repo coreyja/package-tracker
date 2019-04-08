@@ -1,16 +1,27 @@
-<div id="clearance" class="password-reset">
-  <h2><%= t(".title") %></h2>
+<div class="columns is-centered is-mobile">
+  <div class="column container is-two-thirds-tablet is-half-desktop">
+    <div id="clearance" class="password-reset">
+      <h2 class="title"><%= t(".title") %></h2>
 
-  <p><%= t(".description") %></p>
+      <p><%= t(".description") %></p>
 
-  <%= form_for :password, url: passwords_path do |form| %>
-    <div class="text-field">
-      <%= form.label :email %>
-      <%= form.text_field :email, type: 'email' %>
+      <%= form_for :password, url: passwords_path do |form| %>
+        <div class="field">
+          <%= form.label :email, class: 'label' %>
+          <div class="control has-icons-left">
+            <%= form.text_field :email, type: 'email', class: 'input' %>
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="field is-grouped is-grouped-multiline is-grouped-centered">
+          <p class="control">
+          <%= form.submit class: 'button is-primary' %>
+          </p>
+        </div>
+      <% end %>
     </div>
-
-    <div class="submit-field">
-      <%= form.submit %>
-    </div>
-  <% end %>
+  </div>
 </div>

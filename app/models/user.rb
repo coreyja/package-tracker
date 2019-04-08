@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   has_many :packages
   has_many :authentications, dependent: :destroy
+  has_many :push_notification_registrations
 
   def self.find_or_create_by_omniauth!(auth_hash)
     find_or_create_by!(email: auth_hash.info.email) do |user|

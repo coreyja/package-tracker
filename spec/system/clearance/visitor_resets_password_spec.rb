@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'support/features/clearance_helpers'
+require 'support/system/clearance_helpers'
 
 RSpec.describe 'Visitor resets password' do
   before { ActionMailer::Base.deliveries.clear }
@@ -22,6 +22,7 @@ RSpec.describe 'Visitor resets password' do
   end
 
   it 'with valid email' do
+    ActiveJob::Base.queue_adapter = :inline
     user = user_with_reset_password
 
     expect_page_to_display_change_password_message
