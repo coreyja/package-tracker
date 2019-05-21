@@ -127,7 +127,7 @@ GEM
       railties (>= 4.2.0)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
-    ffi (1.10.0)
+    ffi (1.11.1)
     flamegraph (0.9.5)
     geocoder (1.5.1)
     globalid (0.4.2)
