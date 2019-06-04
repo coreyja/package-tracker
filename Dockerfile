@@ -1,4 +1,4 @@
-FROM pawurb/ruby-jemalloc-node-yarn:latest
+FROM starefossen/ruby-node:2-10
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata git && apt-get clean
 
