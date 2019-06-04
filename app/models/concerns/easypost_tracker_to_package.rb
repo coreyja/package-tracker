@@ -5,7 +5,7 @@ module EasypostTrackerToPackage
     def to_package_attrs
       {
         tracking_number: tracking_code,
-        carrier: carrier,
+        carrier_code: carrier,
         easypost_tracking_id: id,
         status: status,
         estimated_delivery_date: est_delivery_date

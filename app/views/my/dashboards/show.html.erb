@@ -1,0 +1,14 @@
+<div class="buttons has-addons is-centered">
+  <%= link_to new_my_package_path, class: 'button is-rounded is-link' do %>
+    <span class="icon">
+      <i class="fas fa-plus"></i>
+    </span>
+    <span><%= t('dashboard.add_button') %></span>
+  <% end %>
+</div>
+
+<% if @dashboard.empty? %>
+  <%= render partial: 'empty', locals: { dashboard: @dashboard } %>
+<% else %>
+  <%= render partial: 'dashboard', locals: { dashboard: @dashboard } %>
+<% end %>

@@ -32,7 +32,7 @@ module My
     private
 
     def package_creator_params
-      params.require(:package_creator).permit(:name, :tracking_number, :carrier).merge(user: current_user)
+      params.require(:package_creator).permit(:name, :tracking_number, :carrier_code).merge(user: current_user)
     end
   end
 end

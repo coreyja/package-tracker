@@ -18,6 +18,8 @@ RSpec.describe 'User views packages' do
     add_new_package(name: 'Custom Name')
     has_expected_number_of_package_rows(count: 2)
     has_package_row_with_text 'Custom Name'
+
+    FakeEasyPost.tracking_details_enabled = true
   end
 
   it 'user can archive packages' do

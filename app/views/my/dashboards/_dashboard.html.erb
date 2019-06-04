@@ -1,0 +1,7 @@
+<h2 class="subtitle has-text-centered">
+  <%= t('dashboard.arriving_today_title', number: dashboard.packages_arriving_today.count) %>
+</h2>
+
+<div class="columns is-multiline has-padding-left-20 has-padding-right-20">
+  <%= render collection: dashboard.packages_arriving_today, as: :package, partial: 'arriving_today_card' %>
+</div>

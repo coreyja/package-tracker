@@ -14,9 +14,10 @@ Rails.application.routes.draw do
   delete "/sign_out" => "sessions#destroy", as: "sign_out"
   get "/sign_up" => "clearance/users#new", as: "sign_up"
 
-  root 'static#index'
+  root 'root#index'
 
   get '/auth/:provider/callback' => 'sessions#create_from_omniauth'
+
 
   namespace :api do
     resources :easypost_events, only: %i(create)
@@ -24,6 +25,8 @@ Rails.application.routes.draw do
   end
 
   namespace :my do
+    resource :dashboard, only: %i(show)
+
     resources :packages, only: %i(new create index show) do
       resource :tracking_refresh, only: %i(create)
       resource :archival, only: %i(create), controller: 'package_archivals'
